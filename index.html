@@ -1,0 +1,2482 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f8f6f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="همراه مالی">
+<meta name="description" content="مدیریت مالی شخصی، ساده و بدون ثبت‌نام — داده‌ها فقط روی دستگاه شما">
+<title>همراه مالی</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌱%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%D9%87%D9%85%D8%B1%D8%A7%D9%87%20%D9%85%D8%A7%D9%84%DB%8C%22%2C%22short_name%22%3A%22%D9%87%D9%85%D8%B1%D8%A7%D9%87%20%D9%85%D8%A7%D9%84%DB%8C%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f6f8f7%22%2C%22theme_color%22%3A%22%230f8f6f%22%2C%22lang%22%3A%22fa%22%2C%22dir%22%3A%22rtl%22%7D">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<style>
+:root{--bg:#f6f8f7;--surface:#fff;--text:#14211d;--muted:#5d6d67;--border:#dfe7e3;--primary:#0f8f6f;--primary-ink:#fff;--soft:#e4f4ee;--warn-bg:#fff4dc;--warn-ink:#7a5200;--bad:#c2410c;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1513;--surface:#16201d;--text:#e8f0ed;--muted:#9fb1aa;--border:#26342f;--primary:#2fc29b;--primary-ink:#06231b;--soft:#173229;--warn-bg:#3a2e12;--warn-ink:#f3d28a;--bad:#fb923c}}
+:root[data-theme="dark"]{--bg:#0e1513;--surface:#16201d;--text:#e8f0ed;--muted:#9fb1aa;--border:#26342f;--primary:#2fc29b;--primary-ink:#06231b;--soft:#173229;--warn-bg:#3a2e12;--warn-ink:#f3d28a;--bad:#fb923c}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-padding-bottom:5rem}
+body{background:var(--bg);color:var(--text);font-family:Vazirmatn,Tahoma,"Segoe UI",system-ui,sans-serif;padding-bottom:5.5rem;line-height:1.7}
+@media(min-width:768px){body{padding-bottom:2rem}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:1rem;padding:1.1rem}
+.card h2{font-size:1.05rem;line-height:1.5}
+.muted{color:var(--muted)}
+.btn{background:var(--primary);color:var(--primary-ink);border-radius:.75rem;padding:.6rem 1.1rem;font-weight:700;transition:opacity .15s,transform .15s}
+.btn:hover{opacity:.9}
+.btn:active{transform:scale(.98)}
+.btn:focus-visible,.btn-ghost:focus-visible,a:focus-visible,button:focus-visible,.inp:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.btn-ghost{background:var(--soft);color:var(--primary);border-radius:.75rem;padding:.5rem .9rem;font-weight:500}
+.inp{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:.7rem;padding:.55rem .75rem}
+.bar{height:.6rem;background:var(--soft);border-radius:9999px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--primary);border-radius:9999px;transition:width .4s ease}
+.status-green{background:#dcfce7;color:#166534}
+.status-yellow{background:var(--warn-bg);color:var(--warn-ink)}
+.status-red{background:#fee2e2;color:#991b1b}
+.status-green .bar>i{background:#16a34a}
+.status-yellow .bar>i{background:#d97706}
+.status-red .bar>i{background:#dc2626}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .status-green{background:#153b2a;color:#86efac}:root:not([data-theme="light"]) .status-red{background:#451a1a;color:#fecaca}}
+:root[data-theme="dark"] .status-green{background:#153b2a;color:#86efac}
+:root[data-theme="dark"] .status-red{background:#451a1a;color:#fecaca}
+dialog{background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:1rem;padding:1.25rem;width:min(92vw,26rem)}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+dialog.wide{width:min(94vw,40rem);max-height:90vh;overflow:auto}
+.nw{white-space:nowrap}
+.faq-q{cursor:pointer;font-weight:700;padding:.75rem 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+.faq-q:hover{color:var(--primary)}
+.faq-a{display:none;padding:.75rem 0 1rem;line-height:1.9;color:var(--muted);font-size:.95rem}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .faq-q span:last-child{transform:rotate(180deg)}
+.toast{position:fixed;bottom:calc(5.5rem + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:.7rem 1.2rem;border-radius:.75rem;font-size:.9rem;z-index:50;opacity:0;transition:opacity .25s;pointer-events:none;max-width:90vw;text-align:center}
+@media(min-width:768px){.toast{bottom:1.5rem}}
+.toast.show{opacity:1}
+.pill{position:relative;cursor:pointer}
+.pill input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer}
+.pill span{display:block;padding:.4rem .7rem;border:1px solid var(--border);border-radius:9999px;font-size:.85rem;background:var(--bg)}
+.pill input:checked+span{background:var(--soft);border-color:var(--primary);color:var(--primary);font-weight:700}
+.pill input:focus-visible+span{outline:2px solid var(--primary);outline-offset:2px}
+.dot{width:2rem;height:2rem;border-radius:9999px;display:flex;align-items:center;justify-content:center;font-size:.8rem;border:1px solid var(--border);background:var(--bg);color:var(--muted)}
+.dot.on{background:var(--primary);border-color:var(--primary);color:var(--primary-ink);font-weight:700}
+.dot.today{outline:2px solid var(--primary);outline-offset:2px}
+.medal{border:1px solid var(--border);border-radius:.9rem;padding:.8rem;text-align:center;background:var(--bg);transition:transform .2s,border-color .2s}
+.medal.on{background:var(--soft);border-color:var(--primary)}
+.medal.locked{opacity:.6;filter:grayscale(1)}
+.empty{border:1px dashed var(--border);border-radius:.9rem;padding:1rem;text-align:center;background:var(--bg)}
+.nav-desktop{display:none}
+@media(min-width:768px){.nav-desktop{display:flex}.nav-bottom,.fab{display:none!important}body{padding-bottom:2rem}}
+.nav-bottom{position:fixed;bottom:0;left:0;right:0;z-index:40;background:var(--surface);border-top:1px solid var(--border);padding:.35rem .5rem calc(.35rem + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-around;align-items:center}
+.nav-bottom a,.nav-bottom button{flex:1;display:flex;flex-direction:column;align-items:center;gap:.15rem;padding:.35rem .25rem;font-size:.7rem;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:none;border-radius:.5rem}
+.nav-bottom a.on,.nav-bottom button.on{color:var(--primary);font-weight:700}
+.nav-bottom .nav-ico{font-size:1.25rem;line-height:1}
+.fab{position:fixed;bottom:calc(4.2rem + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);z-index:41;width:3.4rem;height:3.4rem;border-radius:9999px;background:var(--primary);color:var(--primary-ink);border:none;font-size:1.6rem;font-weight:700;box-shadow:0 4px 14px rgba(15,143,111,.35);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .15s}
+.fab:active{transform:translateX(-50%) scale(.95)}
+.fab-menu{position:fixed;bottom:calc(8rem + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);z-index:41;display:none;flex-direction:column;gap:.5rem;align-items:center}
+.fab-menu.open{display:flex}
+.fab-menu button{border:none;border-radius:9999px;padding:.55rem 1.1rem;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.12);background:var(--surface);color:var(--text);border:1px solid var(--border)}
+.tx-row{cursor:pointer;border-radius:.5rem;transition:background .15s}
+.tx-row:hover{background:var(--soft)}
+.chart-bar{display:flex;align-items:flex-end;gap:.35rem;height:7rem;padding-top:.5rem}
+.chart-bar>div{flex:1;display:flex;flex-direction:column;align-items:center;gap:.25rem;min-width:0}
+.chart-bar .col{width:100%;max-width:2.2rem;border-radius:.4rem .4rem 0 0;background:var(--primary);opacity:.85;transition:height .4s ease;min-height:2px}
+.chart-bar .lbl{font-size:.65rem;color:var(--muted);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.summary-line{font-size:.9rem;line-height:1.8;color:var(--muted)}
+.theme-chip{padding:.45rem .85rem;border:1px solid var(--border);border-radius:9999px;background:var(--bg);font-size:.85rem;cursor:pointer;font-family:inherit;color:var(--text)}
+.theme-chip.on{background:var(--soft);border-color:var(--primary);color:var(--primary);font-weight:700}
+.step-path{display:flex;flex-direction:column;gap:.75rem;text-align:right}
+.step-path .s{display:flex;gap:.75rem;align-items:flex-start}
+.step-path .n{width:1.75rem;height:1.75rem;border-radius:9999px;background:var(--soft);color:var(--primary);font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.header-actions{display:flex;align-items:center;gap:.35rem;flex-wrap:wrap;justify-content:flex-end}
+.header-settings-mobile{display:inline-flex}
+.header-theme-btn{flex-shrink:0}
+@media(min-width:768px){
+  .header-settings-mobile{display:none!important}
+}
+/* fallback utilities if Tailwind CDN offline */
+.flex{display:flex}.flex-1{flex:1 1 0%}.flex-wrap{flex-wrap:wrap}.flex-col{flex-direction:column}
+.items-center{align-items:center}.items-start{align-items:flex-start}.justify-between{justify-content:space-between}.justify-center{justify-content:center}.justify-end{justify-content:flex-end}
+.gap-1{gap:.25rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}
+.grid{display:grid}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:640px){.sm\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:768px){.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.md\:text-3xl{font-size:1.875rem}.md\:py-16{padding-top:4rem;padding-bottom:4rem}}
+@media(min-width:1024px){.lg\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.lg\:grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.text-xs{font-size:.75rem}.text-sm{font-size:.875rem}.text-lg{font-size:1.125rem}.text-2xl{font-size:1.5rem}.text-3xl{font-size:1.875rem}
+.font-bold{font-weight:700}.text-center{text-align:center}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}
+.p-3{padding:.75rem}.px-1{padding-left:.25rem;padding-right:.25rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-4{padding-left:1rem;padding-right:1rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}
+.min-w-0{min-width:0}.min-h-\[1\.5rem\]{min-height:1.5rem}.w-11{width:2.75rem}.h-11{height:2.75rem}.max-w-5xl{max-width:64rem}.max-w-xl{max-width:36rem}.mx-auto{margin-left:auto;margin-right:auto}
+.space-y-1>*+*{margin-top:.25rem}.space-y-2>*+*{margin-top:.5rem}.space-y-4>*+*{margin-top:1rem}
+.leading-6{line-height:1.5}.leading-7{line-height:1.75}.leading-8{line-height:2}
+.list-disc{list-style-type:disc}.list-decimal{list-style-type:decimal}.pr-5{padding-right:1.25rem}
+.underline{text-decoration:underline}.opacity-50{opacity:.5}.opacity-80{opacity:.8}.hidden{display:none}
+.rounded-xl{border-radius:.75rem}.self-center{align-self:center}.shrink-0{flex-shrink:0}
+.divide-y>:not([hidden])~:not([hidden]){border-top-width:1px}
+.sticky{position:sticky}.top-0{top:0}.z-10{z-index:10}
+.inline-block{display:inline-block}.cursor-pointer{cursor:pointer}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.report-row{display:flex;justify-content:space-between;gap:.75rem;padding:.4rem 0;border-bottom:1px solid var(--border);font-size:.9rem}
+.alloc-row{display:grid;grid-template-columns:1fr 7rem;gap:.5rem;align-items:center;margin-bottom:.5rem}
+.offline-banner{display:none;background:var(--warn-bg);color:var(--warn-ink);text-align:center;padding:.4rem;font-size:.8rem}
+body.is-offline .offline-banner{display:block}
+#lockScreen{display:none;position:fixed;inset:0;z-index:100;background:var(--bg);align-items:center;justify-content:center;padding:1.25rem;padding-top:max(1.25rem,env(safe-area-inset-top));padding-bottom:max(1.25rem,env(safe-area-inset-bottom))}
+#lockScreen .lock-inner{width:min(100%,22rem);text-align:center}
+body.is-locked .fab,body.is-locked .fab-menu,body.is-locked .nav-bottom,body.is-locked header,body.is-locked footer{visibility:hidden;pointer-events:none}
+body.is-locked main#app{visibility:hidden;height:0;overflow:hidden;padding:0;margin:0}
+
+/* —— موبایل: لمس، iOS، فاصله‌ها —— */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+*{ -webkit-tap-highlight-color: transparent; }
+.btn,.btn-ghost,.theme-chip,button,.nav-bottom a,.fab,.pill span{
+  -webkit-user-select:none;user-select:none;
+  touch-action:manipulation;
+}
+/* جلوگیری از زوم خودکار iOS روی فوکوس اینپوت */
+.inp,select.inp,textarea.inp,input.inp{
+  font-size:16px !important;
+  min-height:2.75rem;
+  line-height:1.4;
+}
+textarea.inp{min-height:8rem;line-height:1.7}
+.btn,.btn-ghost{min-height:2.75rem;display:inline-flex;align-items:center;justify-content:center}
+.nav-bottom a{min-height:3rem;justify-content:center;padding:.4rem .15rem}
+.nav-bottom .nav-ico{font-size:1.2rem}
+.fab{
+  width:3.5rem;height:3.5rem;
+  bottom:calc(4.4rem + env(safe-area-inset-bottom,0px));
+  box-shadow:0 4px 18px rgba(15,143,111,.4);
+}
+.fab-menu{
+  bottom:calc(8.3rem + env(safe-area-inset-bottom,0px));
+  width:min(90vw,16rem);
+}
+.fab-menu button{
+  min-height:2.75rem;
+  width:100%;
+  font-size:.95rem;
+}
+dialog{
+  max-height:min(90vh, calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px) - 1.5rem));
+  overflow:auto;
+  margin:auto;
+  padding:1rem;
+}
+dialog.wide{width:min(96vw,40rem)}
+#dlgForm{padding-bottom:env(safe-area-inset-bottom,0px)}
+.toast{bottom:calc(6rem + env(safe-area-inset-bottom,0px));z-index:60}
+footer{padding-bottom:calc(.5rem + env(safe-area-inset-bottom,0px))}
+header .header-actions{max-width:100%}
+header a.font-bold{font-size:1.05rem}
+@media(max-width:767px){
+  body{padding-bottom:calc(5.75rem + env(safe-area-inset-bottom,0px))}
+  main#app{padding-left:1rem;padding-right:1rem;padding-top:1rem;padding-bottom:1.25rem}
+  .card{padding:1rem;border-radius:.9rem}
+  .nav-bottom span:not(.nav-ico){font-size:.65rem;line-height:1.2}
+  .header-actions{gap:.25rem}
+  /* هدر فشرده */
+  header .px-4{padding-left:.75rem;padding-right:.75rem}
+  /* دکمه‌های ردیفی در داشبورد */
+  .card .btn,.card .btn-ghost{max-width:100%}
+  .alloc-row{grid-template-columns:1fr;gap:.35rem}
+  .alloc-row .money-inp,.alloc-row .inp{width:100%}
+  /* چارت گزارش در عرض کم */
+  .chart-bar{height:8rem;gap:.2rem}
+  .chart-bar .lbl{font-size:.6rem}
+}
+@media(max-width:380px){
+  .nav-bottom span:not(.nav-ico){font-size:.6rem}
+  .fab{width:3.25rem;height:3.25rem;font-size:1.45rem}
+}
+/* کیبورد باز: دیالوگ قابل اسکرول بماند */
+@supports (height:100dvh){
+  dialog{max-height:calc(100dvh - 2rem)}
+}
+</style>
+</head>
+<body>
+<div class="offline-banner" id="offlineBanner" role="status">حالت آفلاین — داده‌ها روی همین دستگاه‌اند. ظاهر ممکن است ساده‌تر شود.</div>
+<header class="sticky top-0 z-10" style="background:var(--bg);border-bottom:1px solid var(--border)">
+  <div class="max-w-5xl mx-auto flex items-center justify-between px-4 py-3">
+    <a href="#home" class="font-bold text-lg" style="color:var(--primary)">🌱 همراه مالی</a>
+    <div class="header-actions">
+      <nav class="nav-desktop gap-2 text-sm flex-wrap justify-end items-center">
+        <a href="#home" class="btn-ghost">خانه</a>
+        <a href="#dashboard" class="btn-ghost">داشبورد</a>
+        <a href="#transactions" class="btn-ghost">تراکنش‌ها</a>
+        <a href="#reports" class="btn-ghost">گزارش‌ها</a>
+        <a href="#education" class="btn-ghost">آموزش</a>
+        <a href="#help" class="btn-ghost">راهنما</a>
+        <a href="#settings" class="btn-ghost">تنظیمات</a>
+      </nav>
+      <button type="button" id="themeBtn" data-act="cycle-theme" class="btn-ghost text-sm header-theme-btn" title="تغییر تم" aria-label="تغییر تم">🌓</button>
+      <a href="#settings" class="btn-ghost text-sm header-settings-mobile" aria-label="تنظیمات">⚙️</a>
+    </div>
+  </div>
+</header>
+
+<main id="app" class="max-w-5xl mx-auto px-4 py-6"></main>
+
+<button type="button" class="fab" id="fabBtn" aria-label="ثبت سریع" title="ثبت سریع">+</button>
+<div class="fab-menu" id="fabMenu" role="menu">
+  <button type="button" data-act="tx" data-kind="expense" role="menuitem">− ثبت هزینه</button>
+  <button type="button" data-act="tx" data-kind="income" role="menuitem">+ ثبت درآمد</button>
+</div>
+
+<nav class="nav-bottom" id="bottomNav" aria-label="منوی اصلی">
+  <a href="#home" data-nav="home"><span class="nav-ico">🏠</span><span>خانه</span></a>
+  <a href="#dashboard" data-nav="dashboard"><span class="nav-ico">📊</span><span>داشبورد</span></a>
+  <a href="#transactions" data-nav="transactions"><span class="nav-ico">📋</span><span>تراکنش‌ها</span></a>
+  <a href="#education" data-nav="education"><span class="nav-ico">📚</span><span>آموزش</span></a>
+  <a href="#settings" data-nav="settings"><span class="nav-ico">⚙️</span><span>بیشتر</span></a>
+</nav>
+
+<dialog id="dlg" aria-labelledby="dlgTitle"><form id="dlgForm" method="dialog" class="space-y-3"></form></dialog>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<footer class="max-w-5xl mx-auto px-4 pb-4 text-xs muted text-center space-y-1">
+  <p>داده‌ها فقط روی همین دستگاه شما ذخیره می‌شوند و به هیچ سروری ارسال نمی‌شوند.</p>
+  <p>همراه مالی مشاوره مالی، حقوقی یا سرمایه‌گذاری رسمی ارائه نمی‌دهد؛ تصمیم نهایی با شماست.</p>
+  <p>داده‌ها رمزنگاری‌شده روی سرور ذخیره نمی‌شوند؛ امنیت اصلی همان قفل دستگاه و پشتیبان رمزدار شماست.</p>
+</footer>
+
+<script>
+/* ---------- ذخیره‌سازی محلی ---------- */
+const KEY = 'hamrah-mali:v1';
+let mem = null;
+const DEFAULT = () => ({
+  settings:{currency:'تومان',dateFormat:'Jalali',initialBalance:0,theme:'system',lastBackupAt:'',pinHash:'',pinEnabled:false,autoLockMin:0},
+  categories:[
+    ...['خوراک','مسکن','حمل‌ونقل','قبوض','سلامت','تفریح','آموزش','سایر'].map((n,i)=>({id:'e'+i,name:n,type:'expense',isActive:true,isCustom:false})),
+    ...['حقوق','کار آزاد','سایر'].map((n,i)=>({id:'i'+i,name:n,type:'income',isActive:true,isCustom:false}))],
+  incomes:[],expenses:[],budgets:[],savingsGoals:[],debts:[],
+  emergencyFund:{targetAmount:0,currentAmount:0},
+  educationProgress:{completedSteps:[]},
+  achievements:{patternFinder:false,unlocked:{}}
+});
+function normAch(a){
+  a = (a && typeof a==='object') ? a : {};
+  return {patternFinder: !!a.patternFinder, unlocked: (a.unlocked && typeof a.unlocked==='object') ? a.unlocked : {}};
+}
+function load(){
+  try{
+    const raw = localStorage.getItem(KEY);
+    if(raw){
+      const d = JSON.parse(raw);
+      const base = DEFAULT();
+      return {
+        settings: Object.assign(base.settings, d.settings||{}),
+        categories: Array.isArray(d.categories) && d.categories.length ? d.categories : base.categories,
+        incomes: Array.isArray(d.incomes) ? d.incomes : [],
+        expenses: Array.isArray(d.expenses) ? d.expenses : [],
+        budgets: Array.isArray(d.budgets) ? d.budgets.map(b => Object.assign({allocations:[]}, b, {allocations: Array.isArray(b.allocations)?b.allocations:[]})) : [],
+        savingsGoals: Array.isArray(d.savingsGoals) ? d.savingsGoals : [],
+        debts: Array.isArray(d.debts) ? d.debts : [],
+        emergencyFund: Object.assign(base.emergencyFund, d.emergencyFund||{}),
+        educationProgress: Object.assign(base.educationProgress, d.educationProgress||{}),
+        achievements: normAch(d.achievements)
+      };
+    }
+  }catch(e){ console.warn('خواندن ناموفق', e); }
+  return mem ? JSON.parse(mem) : DEFAULT();
+}
+function save(){
+  const s = JSON.stringify(state);
+  mem = s;
+  try{ localStorage.setItem(KEY, s); }
+  catch(e){
+    console.warn('ذخیره ناموفق', e);
+    showToast('ذخیره روی دستگاه ممکن نشد. ممکن است حافظه مرورگر پر باشد یا حالت خصوصی فعال باشد.');
+  }
+}
+let state = load();
+
+/* ---------- تم روشن / تاریک / سیستم ---------- */
+const THEME_CYCLE = ['system', 'light', 'dark'];
+const THEME_ICON = {system: '🌓', light: '☀️', dark: '🌙'};
+const THEME_LABEL = {system: 'تم سیستم', light: 'تم روشن', dark: 'تم تاریک'};
+function applyTheme(){
+  const t = state.settings.theme;
+  const theme = (t === 'light' || t === 'dark') ? t : 'system';
+  state.settings.theme = theme;
+  const root = document.documentElement;
+  if(theme === 'system') root.removeAttribute('data-theme');
+  else root.setAttribute('data-theme', theme);
+  const btn = document.getElementById('themeBtn');
+  if(btn){
+    btn.textContent = THEME_ICON[theme];
+    btn.title = THEME_LABEL[theme] + ' · برای تغییر کلیک کنید';
+    btn.setAttribute('aria-label', THEME_LABEL[theme]);
+  }
+}
+function cycleTheme(){
+  const cur = state.settings.theme || 'system';
+  const i = THEME_CYCLE.indexOf(cur);
+  state.settings.theme = THEME_CYCLE[(i < 0 ? 0 : i + 1) % THEME_CYCLE.length];
+  save();
+  applyTheme();
+  showToast(THEME_LABEL[state.settings.theme]);
+}
+applyTheme();
+
+/* ---------- ابزارها ---------- */
+const $ = s => document.querySelector(s);
+const uid = () => (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36)+Math.random().toString(36).slice(2));
+const fa = n => Math.round(Number(n)||0).toLocaleString('fa-IR');
+const money = n => fa(n)+' '+state.settings.currency;
+const esc = s => String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const SESSION_UNLOCK = 'hamrah-mali:unlocked';
+
+async function sha256Hex(str){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
+}
+async function deriveKey(password, salt){
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey']);
+  return crypto.subtle.deriveKey(
+    {name:'PBKDF2', salt, iterations:120000, hash:'SHA-256'},
+    base,
+    {name:'AES-GCM', length:256},
+    false,
+    ['encrypt','decrypt']
+  );
+}
+function b64encode(buf){
+  const bytes = new Uint8Array(buf);
+  let s = '';
+  for(let i=0;i<bytes.length;i++) s += String.fromCharCode(bytes[i]);
+  return btoa(s);
+}
+function b64decode(str){
+  const s = atob(str);
+  const bytes = new Uint8Array(s.length);
+  for(let i=0;i<s.length;i++) bytes[i] = s.charCodeAt(i);
+  return bytes.buffer;
+}
+async function encryptJson(obj, password){
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const key = await deriveKey(password, salt);
+  const plain = new TextEncoder().encode(JSON.stringify(obj));
+  const cipher = await crypto.subtle.encrypt({name:'AES-GCM', iv}, key, plain);
+  return {
+    version: 1,
+    encrypted: true,
+    algo: 'AES-GCM-PBKDF2',
+    salt: b64encode(salt),
+    iv: b64encode(iv),
+    data: b64encode(cipher)
+  };
+}
+async function decryptJson(payload, password){
+  const salt = new Uint8Array(b64decode(payload.salt));
+  const iv = new Uint8Array(b64decode(payload.iv));
+  const key = await deriveKey(password, salt);
+  const plain = await crypto.subtle.decrypt({name:'AES-GCM', iv}, key, b64decode(payload.data));
+  return JSON.parse(new TextDecoder().decode(plain));
+}
+function isSessionUnlocked(){
+  try{ return sessionStorage.getItem(SESSION_UNLOCK) === '1'; }catch(e){ return false; }
+}
+function setSessionUnlocked(v){
+  try{
+    if(v) sessionStorage.setItem(SESSION_UNLOCK, '1');
+    else sessionStorage.removeItem(SESSION_UNLOCK);
+  }catch(e){}
+}
+function needsLockScreen(){
+  return !!(state.settings && state.settings.pinEnabled && state.settings.pinHash) && !isSessionUnlocked();
+}
+
+/** تاریخ محلی را به صورت YYYY-MM-DD برمی‌گرداند (هماهنگ با input[type=date] و ذخیره‌سازی) */
+const toLocalISO = d => {
+  const x = new Date(d);
+  x.setMinutes(x.getMinutes() - x.getTimezoneOffset());
+  return x.toISOString().slice(0, 10);
+};
+const todayISO = () => toLocalISO(new Date());
+const jDate = iso => {
+  try{ return new Date(iso+'T12:00:00').toLocaleDateString('fa-IR-u-ca-persian',{year:'numeric',month:'long',day:'numeric'}); }
+  catch(e){ return iso; }
+};
+const jMonthKey = iso => {
+  try{
+    const p=new Intl.DateTimeFormat('en-u-ca-persian-nu-latn',{year:'numeric',month:'numeric'}).formatToParts(new Date(iso+'T12:00:00'));
+    const y = p.find(x=>x.type==='year').value;
+    const m = String(parseInt(p.find(x=>x.type==='month').value, 10));
+    return y + '-' + m;
+  }catch(e){ return ''; }
+};
+const jMonthName = iso => {
+  try{ return new Date(iso+'T12:00:00').toLocaleDateString('fa-IR-u-ca-persian',{year:'numeric',month:'long'}); }
+  catch(e){ return ''; }
+};
+const sum = a => a.reduce((t,x)=>t+(Number(x.amount)||0),0);
+const catName = id => (state.categories.find(c=>c.id===id)||{name:'—'}).name;
+const toEnDigits = s => String(s||'').replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+const parseMoneyStr = s => {
+  const cleaned = toEnDigits(s).replace(/,/g,'').replace(/،/g,'').replace(/[^\d.-]/g,'').trim();
+  if(cleaned === '' || cleaned === '-') return null;
+  const v = Number(cleaned);
+  return Number.isFinite(v) ? v : null;
+};
+const formatMoneyTyping = s => {
+  const raw = toEnDigits(s).replace(/[^\d]/g,'');
+  if(!raw) return '';
+  return raw.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
+const moneyInput = (name, val='') => {
+  const display = (val===''||val===undefined||val===null) ? '' : formatMoneyTyping(String(Math.round(Number(val)||0)));
+  return `<input class="inp money-inp" name="${name}" type="text" inputmode="numeric" dir="ltr" autocomplete="off" required value="${display}" placeholder="مثلاً 150,000">`;
+};
+
+/* تبدیل میلادی ⇄ شمسی (الگوریتم استاندارد) */
+function gregorianToJalali(gy, gm, gd){
+  const g_d_m = [0,31,59,90,120,151,181,212,243,273,304,334];
+  let jy = (gy <= 1600) ? 0 : 979;
+  gy -= (gy <= 1600) ? 621 : 1600;
+  const gy2 = (gm > 2) ? (gy + 1) : gy;
+  let days = (365 * gy) + Math.floor((gy2 + 3) / 4) - Math.floor((gy2 + 99) / 100) + Math.floor((gy2 + 399) / 400) - 80 + gd + g_d_m[gm - 1];
+  jy += 33 * Math.floor(days / 12053);
+  days %= 12053;
+  jy += 4 * Math.floor(days / 1461);
+  days %= 1461;
+  if(days > 365){ jy += Math.floor((days - 1) / 365); days = (days - 1) % 365; }
+  const jm = (days < 186) ? 1 + Math.floor(days / 31) : 7 + Math.floor((days - 186) / 30);
+  const jd = 1 + ((days < 186) ? (days % 31) : ((days - 186) % 30));
+  return [jy, jm, jd];
+}
+function jalaliToGregorian(jy, jm, jd){
+  let gy = (jy <= 979) ? 621 : 1600;
+  jy -= (jy <= 979) ? 0 : 979;
+  const days = (365 * jy) + Math.floor(jy / 33) * 8 + Math.floor(((jy % 33) + 3) / 4) + 78 + jd + ((jm < 7) ? (jm - 1) * 31 : ((jm - 7) * 30 + 186));
+  gy += 400 * Math.floor(days / 146097);
+  let d = days % 146097;
+  if(d > 36524){ gy += 100 * Math.floor(--d / 36524); d %= 36524; if(d >= 365) d++; }
+  gy += 4 * Math.floor(d / 1461);
+  d %= 1461;
+  if(d > 365){ gy += Math.floor((d - 1) / 365); d = (d - 1) % 365; }
+  const gd = d + 1;
+  const sal_a = [0,31,(gy % 4 === 0 && gy % 100 !== 0) || (gy % 400 === 0) ? 29 : 28,31,30,31,30,31,31,30,31,30,31];
+  let gm = 0, v = gd;
+  for(gm = 1; gm <= 12 && v > sal_a[gm]; gm++) v -= sal_a[gm];
+  return [gy, gm, v];
+}
+function isoToJalaliParts(iso){
+  const [y,m,d] = (iso || todayISO()).split('-').map(Number);
+  return gregorianToJalali(y, m, d);
+}
+function jalaliPartsToIso(jy, jm, jd){
+  const [gy, gm, gd] = jalaliToGregorian(+jy, +jm, +jd);
+  return gy + '-' + String(gm).padStart(2,'0') + '-' + String(gd).padStart(2,'0');
+}
+function endOfJalaliMonthISO(iso){
+  const [jy, jm] = isoToJalaliParts(iso || todayISO());
+  let njy = jy, njm = jm + 1;
+  if(njm > 12){ njm = 1; njy++; }
+  const nextFirst = jalaliPartsToIso(njy, njm, 1);
+  const d = new Date(nextFirst + 'T12:00:00');
+  d.setDate(d.getDate() - 1);
+  return toLocalISO(d);
+}
+function jalaliMonthKeysBack(count){
+  const keys = [];
+  let [jy, jm] = isoToJalaliParts(todayISO());
+  for(let i = 0; i < count; i++){
+    keys.push(jy + '-' + jm);
+    jm--;
+    if(jm < 1){ jm = 12; jy--; }
+  }
+  return keys;
+}
+const J_MONTHS = ['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
+/** کبیسه بودن سال شمسی (الگوریتم استاندارد) */
+function isJalaliLeap(jy){
+  const a = ((jy - (jy > 0 ? 474 : 473)) % 2820 + 2820) % 2820 + 474;
+  return (((a + 38) * 682) % 2816) < 682;
+}
+function jalaliMonthLength(jy, jm){
+  if(jm <= 6) return 31;
+  if(jm <= 11) return 30;
+  return isJalaliLeap(jy) ? 30 : 29;
+}
+/**
+ * فیلد تاریخ شمسی
+ * opts.optional: اگر true، تیک «بدون تاریخ» و امکان خالی گذاشتن
+ * opts.hint: متن راهنما
+ */
+function jalaliDateField(iso, opts){
+  opts = opts || {};
+  const optional = !!opts.optional;
+  const hasDate = !optional || (iso && iso.length >= 8);
+  const [jy, jm, jd] = isoToJalaliParts(hasDate ? iso : todayISO());
+  const years = [];
+  for(let y = jy + 2; y >= jy - 15; y--) years.push(y);
+  const dayMax = jalaliMonthLength(jy, jm);
+  const days = [];
+  for(let d = 1; d <= 31; d++) days.push(d);
+  const disabled = optional && !hasDate;
+  return `${optional?`<label class="flex items-center gap-2 text-sm mb-2"><input type="checkbox" name="j_no_date" ${hasDate?'':'checked'} data-jdate-optional> بدون تاریخ مشخص</label>`:''}
+  <div class="flex gap-2 flex-wrap" data-jdate-wrap ${disabled?'style="opacity:.45;pointer-events:none"':''}>
+    <select class="inp" name="j_day" style="flex:1;min-width:4.5rem" aria-label="روز" ${disabled?'disabled':''}>${days.map(d=>`<option value="${d}" ${d===jd?'selected':''} ${d>dayMax?'disabled':''}>${fa(d)}</option>`).join('')}</select>
+    <select class="inp" name="j_month" style="flex:1.4;min-width:7rem" aria-label="ماه" ${disabled?'disabled':''}>${J_MONTHS.map((n,i)=>`<option value="${i+1}" ${i+1===jm?'selected':''}>${n}</option>`).join('')}</select>
+    <select class="inp" name="j_year" style="flex:1;min-width:5rem" aria-label="سال" ${disabled?'disabled':''}>${years.map(y=>`<option value="${y}" ${y===jy?'selected':''}>${fa(y)}</option>`).join('')}</select>
+  </div>
+  <p class="muted text-xs mt-1">${opts.hint || 'می‌توانید تاریخ روزهای قبل را برای تراکنش فراموش‌شده انتخاب کنید.'}</p>`;
+}
+function readJalaliDate(fd){
+  if(fd.get('j_no_date')) return null;
+  const jy = +fd.get('j_year'), jm = +fd.get('j_month'), jd = +fd.get('j_day');
+  if(!jy || !jm || !jd) return null;
+  const max = jalaliMonthLength(jy, jm);
+  if(jd < 1 || jd > max) return null;
+  return jalaliPartsToIso(jy, jm, jd);
+}
+function bindMoneyInputs(root){
+  (root || document).querySelectorAll('.money-inp').forEach(inp => {
+    if(inp._moneyBound) return;
+    inp._moneyBound = true;
+    inp.addEventListener('input', () => {
+      const cur = inp.selectionStart;
+      const old = inp.value;
+      const next = formatMoneyTyping(old);
+      if(next === old) return;
+      inp.value = next;
+      const diff = next.length - old.length;
+      try{ inp.setSelectionRange(Math.max(0, cur + diff), Math.max(0, cur + diff)); }catch(e){}
+    });
+  });
+}
+function bindJalaliDate(root){
+  const scope = root || document;
+  scope.querySelectorAll('[data-jdate-wrap]').forEach(wrap => {
+    if(wrap._bound) return;
+    wrap._bound = true;
+    const daySel = wrap.querySelector('[name="j_day"]');
+    const monSel = wrap.querySelector('[name="j_month"]');
+    const yearSel = wrap.querySelector('[name="j_year"]');
+    const syncDays = () => {
+      const jy = +(yearSel && yearSel.value) || isoToJalaliParts(todayISO())[0];
+      const jm = +monSel.value;
+      const max = jalaliMonthLength(jy, jm);
+      [...daySel.options].forEach(o => { o.disabled = +o.value > max; });
+      if(+daySel.value > max) daySel.value = String(max);
+    };
+    monSel.addEventListener('change', syncDays);
+    if(yearSel) yearSel.addEventListener('change', syncDays);
+    syncDays();
+  });
+  const opt = scope.querySelector('[data-jdate-optional]');
+  if(opt && !opt._bound){
+    opt._bound = true;
+    const wrap = scope.querySelector('[data-jdate-wrap]');
+    const toggle = () => {
+      const off = opt.checked;
+      if(wrap){
+        wrap.style.opacity = off ? '.45' : '';
+        wrap.style.pointerEvents = off ? 'none' : '';
+        wrap.querySelectorAll('select').forEach(s => { s.disabled = off; });
+      }
+    };
+    opt.addEventListener('change', toggle);
+    toggle();
+  }
+}
+
+/* ---------- ارزش هزینه، ریتم هفتگی و مدال‌ها ---------- */
+const WORTH = {yes:['😊','ارزشش را داشت'], ok:['😐','تا حدی'], no:['😕','نه چندان']};
+let patternOpen = false;
+let txFilter = 'all';
+let txMonth = 'current'; /* current | prev | 3m | all */
+let txSearch = '';
+let fabOpen = false;
+let advisorPeriod = 'current'; /* current | 3m | all */
+const worthField = () => `<fieldset class="mt-2"><legend class="text-sm">ارزشش را داشت؟ <span class="muted">(اختیاری)</span></legend>
+  <div class="flex flex-wrap gap-2 mt-1">
+    <label class="pill"><input type="radio" name="worth" value="" checked><span>رد می‌کنم</span></label>
+    ${Object.entries(WORTH).map(([k,v])=>`<label class="pill"><input type="radio" name="worth" value="${k}"><span>${v[0]} ${v[1]}</span></label>`).join('')}
+  </div></fieldset>`;
+/* هفته شمسی ایران: شنبه تا جمعه */
+function last7(){
+  const set = new Set([...state.incomes, ...state.expenses].map(x=>x.date));
+  const now = new Date();
+  now.setHours(12, 0, 0, 0);
+  /* JS: 0=یکشنبه ... 6=شنبه → شاخص هفته ایران: شنبه=0 */
+  const iranDow = (now.getDay() + 1) % 7;
+  const saturday = new Date(now);
+  saturday.setDate(now.getDate() - iranDow);
+  const labels = ['ش','ی','د','س','چ','پ','ج'];
+  const names = ['شنبه','یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه'];
+  const today = todayISO();
+  const out = [];
+  for(let i = 0; i < 7; i++){
+    const d = new Date(saturday);
+    d.setDate(saturday.getDate() + i);
+    const iso = toLocalISO(d);
+    out.push({
+      iso,
+      on: set.has(iso),
+      today: iso === today,
+      label: labels[i],
+      name: names[i]
+    });
+  }
+  return out;
+}
+const MEDALS = [
+  {id:'start',   icon:'🌱', name:'شروع آگاهانه', hint:'اولین درآمد یا هزینه‌ات را ثبت کن.', test:()=>state.incomes.length+state.expenses.length>0},
+  {id:'pattern', icon:'🔍', name:'الگویاب',      hint:'در داشبورد، «الگوهای من» را مرور کن.', test:()=>state.achievements.patternFinder},
+  {id:'budget',  icon:'📉', name:'بودجه‌ساز',    hint:'یک سقف بودجه ماهانه تعیین کن.', test:()=>state.budgets.length>0},
+  {id:'rhythm',  icon:'📆', name:'ریتم هفتگی',   hint:'در ۴ روز از هفته جاری (شنبه تا جمعه) تراکنش ثبت کن.', test:()=>last7().filter(d=>d.on).length>=4},
+  {id:'mindful', icon:'💭', name:'خریدار آگاه',  hint:'برای ۳ هزینه مشخص کن ارزشش را داشته یا نه.', test:()=>state.expenses.filter(x=>x.worth).length>=3}
+];
+function syncMedals(){
+  const u = state.achievements.unlocked, fresh = [];
+  MEDALS.forEach(m=>{ if(!u[m.id] && m.test()){ u[m.id] = todayISO(); fresh.push(m); } });
+  if(fresh.length) save();
+  return fresh;
+}
+
+function showToast(msg, ms=3200){
+  const t = $('#toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(()=>t.classList.remove('show'), ms);
+}
+
+const EDUCATION_STEPS = [
+ {title:'شناخت وضعیت مالی فعلی',intro:'قبل از تغییر دادن پول، اول باید بدانیم امروز کجا ایستاده‌ایم. قرار نیست خودت را قضاوت کنی؛ فقط تصویر واقعی را ثبت کن.',learn:['درآمدهای ماهانه و زمان دریافت آن‌ها را بنویس.','هزینه‌های ثابت مثل اجاره و قبض‌ها را از هزینه‌های متغیر مثل خوراک و تفریح جدا کن.','بدهی‌ها، قسط‌ها، پس‌انداز و موجودی قابل‌دسترس را فهرست کن.','اگر عددی را نمی‌دانی، تخمین بزن و بعداً دقیقش کن.'],exercise:'یک برگه با چهار عنوان بساز: درآمد، هزینه، بدهی و پس‌انداز. برای هر مورد مبلغ تقریبی و زمان پرداخت/دریافت را بنویس.',goal:'یک تصویر اولیه از وضعیت مالی خود داشته باشم.'},
+ {title:'تعیین ارزش‌ها و اولویت‌ها',intro:'بودجه فقط محدودیت نیست؛ راهی است برای خرج کردن پول در مسیر چیزهایی که واقعاً برایت مهم‌اند.',learn:['سه اولویت مهم زندگی‌ات را مشخص کن؛ مثلاً آرامش، خانواده، آموزش یا آزادی زمانی.','هزینه‌های ضروری را از هزینه‌های دلخواه جدا کن؛ دلخواه بودن به معنی بد بودن نیست.','بین چیزی که امروز خوشحالت می‌کند و هدفی که در بلندمدت برایت مهم است تعادل بساز.'],exercise:'سه اولویت مالی خود را بنویس و برای هرکدام یک رفتار کوچک پولی تعیین کن؛ مثلاً ماهی مبلغی برای آموزش کنار بگذارم.',goal:'بدانم پولم قرار است از چه اولویت‌هایی پشتیبانی کند.'},
+ {title:'ثبت مخارج روزانه',intro:'هزینه‌های کوچک هم وقتی کنار هم جمع می‌شوند تصویر مهمی می‌سازند. ثبت کردن برای سرزنش نیست؛ برای آگاه شدن است.',learn:['هر هزینه را همان روز یا در اولین فرصت ثبت کن.','تاریخ، مبلغ، عنوان و دسته‌بندی را بنویس.','هزینه‌های ضروری و انتخابی را مشخص کن تا بعداً راحت‌تر تصمیم بگیری.','اگر یک روز فراموش شد، از روز بعد ادامه بده؛ لازم نیست همه‌چیز بی‌نقص باشد.'],exercise:'برای هفت روز، تمام هزینه‌ها حتی خریدهای کوچک را ثبت کن. پایان هفته سه هزینه پرتکرار را پیدا کن.',goal:'حداقل هفت روز ثبت منظم هزینه داشته باشم.'},
+ {title:'شناخت الگوی هزینه‌ها',intro:'وقتی چند روز داده جمع شد، می‌توانی به جای حدس زدن، الگوها را ببینی.',learn:['هزینه‌ها را بر اساس دسته‌بندی مقایسه کن.','به هزینه‌های تکرارشونده و خریدهای ناگهانی توجه کن.','هزینه بالا همیشه به معنی اسراف نیست؛ ممکن است نیاز واقعی یا هزینه فصلی باشد.','به جای حذف همه لذت‌ها، یک تغییر کوچک و قابل‌دوام انتخاب کن.'],exercise:'هزینه‌های هفته قبل را مرور کن. یک هزینه را که می‌توانی کم یا بهتر برنامه‌ریزی کنی انتخاب کن و مقدار احتمالی صرفه‌جویی را بنویس.',goal:'یک الگوی هزینه و یک فرصت بهبود پیدا کنم.'},
+ {title:'تعیین بودجه ماهانه',intro:'بودجه یک برنامه منعطف است: پولی که انتظار داری وارد شود، از قبل برای نیازها و هدف‌ها تقسیم می‌شود.',learn:['از درآمد خالص و قابل‌اتکای ماهانه شروع کن.','ابتدا هزینه‌های ضروری و تعهدات قطعی را کنار بگذار.','برای هزینه‌های متغیر، پس‌انداز و تفریح هم سهم واقع‌بینانه تعیین کن.','بودجه کل هزینه در همراه مالی با مجموع هزینه‌های ثبت‌شده در ماه شمسی جاری مقایسه می‌شود.','هشدار سبز یعنی کمتر از ۸۰٪ سقف؛ زرد یعنی از ۸۰٪ تا کمتر از ۱۰۰٪؛ قرمز یعنی رسیدن به سقف یا عبور از آن.'],exercise:'یک سقف هزینه ماهانه تعیین کن که با درآمد و تعهدات واقعی‌ات سازگار باشد. سپس برای سه دسته اصلی هم حد شخصی بنویس.',goal:'یک سقف ماهانه واقع‌بینانه تعریف کنم.'},
+ {title:'ساختن عادت پس‌انداز',intro:'پس‌انداز لازم نیست با مبلغ بزرگی شروع شود. استمرار معمولاً از شروع هیجان‌زده و ناپایدار بهتر است.',learn:['مبلغی کوچک و قابل‌تکرار انتخاب کن.','اگر ممکن است، پس‌انداز را نزدیک زمان دریافت درآمد برنامه‌ریزی کن.','پس‌انداز را با انتقال بین حساب‌ها با هزینه مصرف‌شده اشتباه نگیر؛ انتقال به پس‌انداز خرج مصرفی نیست.','در ماه سخت مبلغ را کم کن، اما اگر شد عادت را حفظ کن.'],exercise:'یک مبلغ شروع انتخاب کن و تاریخ مشخصی برای کنار گذاشتن آن تعیین کن. پس از دو هفته بررسی کن آیا مبلغ مناسب بوده است.',goal:'یک برنامه پس‌انداز قابل‌تداوم داشته باشم.'},
+ {title:'کاهش هزینه بدون فرسودگی',intro:'هدف این نیست که زندگی را از لذت خالی کنی؛ هدف این است که خرج‌ها با اولویت‌هایت هماهنگ‌تر شوند.',learn:['اشتراک‌های بلااستفاده و کارمزدهای قابل‌اجتناب را بررسی کن.','برای خریدهای غیرضروری، یک مکث کوتاه پیش از پرداخت بگذار.','قیمت و کیفیت را با هم مقایسه کن؛ ارزان‌ترین گزینه همیشه بهترین نیست.','روی یک یا دو تغییر تمرکز کن، نه ده تغییر سخت به‌صورت هم‌زمان.'],exercise:'فهرست هزینه‌های ماه گذشته را نگاه کن و یک هزینه قابل‌کاهش انتخاب کن. راهکار و مقدار تقریبی صرفه‌جویی ماهانه را ثبت کن.',goal:'یک تغییر مشخص و قابل‌اندازه‌گیری انجام دهم.'},
+ {title:'ساخت صندوق اضطراری',intro:'هزینه‌های پیش‌بینی‌نشده بخشی از زندگی‌اند. صندوق اضطراری کمک می‌کند برای هر اتفاقی مجبور به قرض گرفتن نشوی.',learn:['ابتدا هدف کوچک و دست‌یافتنی انتخاب کن؛ حتی یک ذخیره محدود شروع خوبی است.','هدف بلندمدت می‌تواند چند ماه هزینه ضروری باشد، اما مقدار مناسب به شرایط هر فرد بستگی دارد.','این پول را از پس‌انداز برای تعطیلات یا خریدهای برنامه‌ریزی‌شده جدا نگه دار.','از مبلغی شروع کن که بدون به خطر انداختن نیازهای ضروری کنار می‌رود.'],exercise:'هزینه‌های ضروری یک ماه را تخمین بزن. هدف اولیه صندوق اضطراری و مبلغی را که هر ماه می‌توانی اضافه کنی بنویس.',goal:'هدف اولیه صندوق اضطراری و برنامه رسیدن به آن را تعیین کنم.'},
+ {title:'هدف‌گذاری مالی روشن',intro:'هدف خوب، تصمیم روزمره را آسان‌تر می‌کند؛ چون می‌دانی برای چه چیزی پول کنار می‌گذاری.',learn:['هدف را مشخص و قابل‌اندازه‌گیری بنویس.','مبلغ هدف و تاریخ تقریبی رسیدن را تعیین کن.','مبلغ باقی‌مانده را بر تعداد ماه‌های باقی‌مانده تقسیم کن تا پس‌انداز ماهانه تقریبی به دست آید.','اگر عدد ماهانه واقع‌بینانه نیست، تاریخ یا مبلغ هدف را بازبینی کن.'],exercise:'یک هدف بنویس: «برای … تا تاریخ … مبلغ … جمع می‌کنم». مبلغ هدف منهای پس‌انداز فعلی را بر تعداد ماه‌های باقی‌مانده تقسیم کن.',goal:'یک هدف مالی با مبلغ و زمان مشخص تعریف کنم.'},
+ {title:'مدیریت بدهی و تعهدات',intro:'بدهی‌ها را با اطلاعات روشن مدیریت کن، نه با شرم. دانستن موعدها و هزینه‌ها کمک می‌کند تصمیم بهتری بگیری.',learn:['برای هر بدهی، مانده، قسط، سررسید و نرخ یا هزینه آن را ثبت کن.','اول پرداخت‌های ضروری و سررسیدهای نزدیک را بشناس تا جریمه ناخواسته ایجاد نشود.','پیش از گرفتن بدهی جدید، کل مبلغ بازپرداخت و توان پرداخت را بررسی کن.','اگر پرداخت دشوار شده، زودتر با طلبکار یا مشاور معتبر درباره گزینه‌ها گفت‌وگو کن.'],exercise:'جدولی از بدهی‌ها و سررسیدهایشان بساز. سپس برای ماه آینده تقویم پرداخت تهیه کن و مبلغ لازم را با درآمد قابل‌اتکا مقایسه کن.',goal:'تعهدات و موعدهای پرداخت را یک‌جا ببینم.'},
+ {title:'تقویت درآمد و مهارت‌ها',intro:'بهبود وضعیت مالی فقط کم کردن هزینه نیست. گاهی افزایش درآمد، یادگیری مهارت یا مذاکره درباره دستمزد مؤثرتر است.',learn:['مهارت‌ها و تجربه‌هایی را که می‌توانند ارزش اقتصادی داشته باشند فهرست کن.','یک مسیر کوچک و عملی برای یادگیری یا ارائه خدمت انتخاب کن.','هزینه، زمان و ریسک هر فرصت را پیش از شروع بررسی کن.','درآمد احتمالی را قطعی فرض نکن؛ بودجه اصلی را بر درآمد قابل‌اتکا ببند.'],exercise:'یک مهارت یا فرصت درآمدی را انتخاب کن. اقدام اول، زمان لازم، هزینه شروع و نشانه‌ای که موفقیت را می‌سنجد بنویس.',goal:'یک اقدام کوچک برای تقویت توان درآمدزایی برنامه‌ریزی کنم.'},
+ {title:'بازبینی و ساختن عادت مالی',intro:'برنامه مالی سندی ثابت نیست. مرور کوتاه و منظم کمک می‌کند با تغییر درآمد، هزینه و هدف‌ها همراه بماند.',learn:['هفته‌ای یک‌بار ثبت‌ها را کامل کن.','پایان ماه، درآمد، هزینه، تغییر موجودی و پیشرفت هدف‌ها را مرور کن.','علت عبور از بودجه را بررسی کن؛ یک اتفاق غیرمنتظره با یک الگوی تکراری فرق دارد.','برای ماه آینده یک کار را حفظ و یک کار را اصلاح کن.','اگر شرایطت تغییر کرد، بودجه و هدف‌ها را بدون سرزنش به‌روز کن.'],exercise:'یک مرور ۱۵ دقیقه‌ای انجام بده: چه چیزی خوب پیش رفت؟ چه چیزی غافلگیرت کرد؟ ماه آینده فقط کدام یک تغییر را امتحان می‌کنی؟',goal:'زمان مشخصی برای مرور هفتگی و ماهانه تعیین کنم.'}
+];
+const STEPS = Object.fromEntries(EDUCATION_STEPS.map((s,i)=>[i+1,s.title]));
+const stepTitle = n => STEPS[n] || ('قدم '+n.toLocaleString('fa-IR'));
+
+/* ---------- صفحه اصلی ---------- */
+function renderHome(){
+  const feats = [
+    ['📊','داشبورد شفاف','موجودی، درآمد و هزینه ماه را یک‌جا ببینید.'],
+    ['📉','بودجه‌بندی ملایم','هشدارهای مهربان، بدون سرزنش.'],
+    ['🎯','اهداف و ذخیره اضطراری','قدم‌به‌قدم پس‌انداز کنید.'],
+    ['📚','مسیر آموزشی ۱۲ قدمی','با تمرین‌های عملی، مالی خود را بسازید.']
+  ];
+  $('#app').innerHTML = `
+  <section class="text-center py-10 md:py-16">
+    <h1 class="text-3xl md:text-5xl font-bold leading-tight">مدیریت مالی شخصی،<br><span style="color:var(--primary)">ساده و بدون ثبت‌نام</span></h1>
+    <p class="muted mt-4 max-w-xl mx-auto leading-8">درآمدها و هزینه‌هایتان را ثبت کنید، بودجه بسازید و با یک مسیر آموزشی ۱۲ قدمی، کنترل پول خود را به دست بگیرید. همه‌چیز روی دستگاه خودتان می‌ماند.</p>
+    <a href="#dashboard" class="btn inline-block mt-7 text-lg px-7 py-3">شروع استفاده بدون نیاز به ثبت‌نام</a>
+  </section>
+  <section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    ${feats.map(f=>`<div class="card"><div class="text-2xl">${f[0]}</div><h3 class="font-bold mt-2">${f[1]}</h3><p class="muted text-sm mt-1 leading-7">${f[2]}</p></div>`).join('')}
+  </section>
+  <section class="card mt-8 text-center">
+    <p class="muted text-sm leading-7">اگر تازه‌کار هستید، از <a href="#help" class="underline" style="color:var(--primary)">صفحه راهنما</a> شروع کنید یا مستقیم به <a href="#education" class="underline" style="color:var(--primary)">مسیر آموزشی</a> بروید.</p>
+  </section>`;
+}
+
+/* ---------- داشبورد ---------- */
+function renderDashboard(){
+  const today = todayISO(), mk = jMonthKey(today);
+  const inc = state.incomes, exp = state.expenses;
+  const balance = (Number(state.settings.initialBalance)||0) + sum(inc) - sum(exp);
+  const mInc = sum(inc.filter(x=>jMonthKey(x.date)===mk));
+  const mExp = exp.filter(x=>jMonthKey(x.date)===mk);
+  const mExpSum = sum(mExp);
+  const budget = state.budgets.find(b=>b.period==='monthly' && jMonthKey(b.startDate)===mk);
+  const ef = state.emergencyFund;
+  const done = state.educationProgress.completedSteps || [];
+  const next = [1,2,3,4,5,6,7,8,9,10,11,12].find(n=>!done.includes(n) && isLessonUnlocked(n, done));
+
+  const allTx = [...inc.map(x=>({...x,kind:'income',label:x.source})),
+                 ...exp.map(x=>({...x,kind:'expense',label:x.title}))]
+    .sort((a,b)=>b.date.localeCompare(a.date) || b.id.localeCompare(a.id));
+  const tx = allTx.slice(0, 8);
+  const txTotal = allTx.length;
+
+  const byCat = {};
+  mExp.forEach(x=>{ const id=x.categoryId||''; byCat[id]=(byCat[id]||0)+(Number(x.amount)||0); });
+  const cats = Object.entries(byCat).sort((a,b)=>b[1]-a[1]);
+  const week = last7(), activeDays = week.filter(d=>d.on).length;
+  const fresh = syncMedals();
+  const isEmpty = !inc.length && !exp.length;
+  const budgetPct = budget && Number(budget.totalBudget)>0 ? Math.round(mExpSum/Number(budget.totalBudget)*100) : null;
+  const summaryLine = isEmpty
+    ? 'از هر جا که هستی شروع کن — یک ثبت کوچک کافی است.'
+    : `این هفته ${fa(activeDays)} روز ثبت کردی` + (budgetPct!=null ? ` · هزینهٔ ماه تا اینجا ${fa(budgetPct)}٪ بودجه` : ` · هزینهٔ این ماه ${money(mExpSum)}`);
+  const topCats = cats.slice(0, 6);
+  const maxCat = topCats.length ? topCats[0][1] : 0;
+  const chartHtml = topCats.length ? `<div class="chart-bar mt-2" aria-hidden="true">${topCats.map(([id,v])=>{
+    const h = maxCat>0 ? Math.max(6, Math.round(v/maxCat*96)) : 6;
+    return `<div><div class="col" style="height:${h}px"></div><div class="lbl" title="${esc(catName(id))}">${esc(catName(id))}</div></div>`;
+  }).join('')}</div>` : '';
+
+  let budgetHtml;
+  if(budget){
+    const limit = Number(budget.totalBudget)||0;
+    const raw = limit>0 ? mExpSum/limit : (mExpSum>0 ? Infinity : 0);
+    const pct = Number.isFinite(raw) ? Math.min(100, raw*100) : 100;
+    const status = raw>=1 ? 'red' : raw>=.8 ? 'yellow' : 'green';
+    const label = status==='red' ? 'قرمز · سقف بودجه پر شده'
+                 : status==='yellow' ? 'زرد · نزدیک سقف بودجه'
+                 : 'سبز · در محدوده امن بودجه';
+    const msg = status==='red'
+      ? 'سقف بودجه این ماه پر شد. هیچ‌کس کامل نیست؛ بیایید باقی ماه را با هم مرور کنیم.'
+      : status==='yellow'
+      ? 'نزدیک سقف شدی. هزینه‌های ضروری باقی‌مانده را یک نگاه بنداز.'
+      : 'همه‌چیز آرام است. هنوز جا داری برای لذت‌های کوچک.';
+    const left = limit - mExpSum;
+    budgetHtml = `<div class="rounded-xl p-3 status-${status}">
+      <div class="flex items-center justify-between gap-2 text-sm font-bold"><span>${label}</span><span>${Number.isFinite(raw)?fa(Math.round(raw*100)):'∞'}٪</span></div>
+      <div class="flex justify-between text-sm mt-3"><span>${money(mExpSum)} هزینه ثبت‌شده</span><span>سقف: ${money(limit)}</span></div>
+      <div class="bar mt-2" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(pct)}"><i style="width:${pct}%"></i></div>
+      <p class="mt-3 text-sm leading-7">${msg}</p>
+      <p class="text-xs mt-1 opacity-80">${left>=0?'باقی‌مانده: '+money(left):'بیشتر از سقف: '+money(-left)}</p>
+      ${(() => {
+        const allocs = budget.allocations || [];
+        if(!allocs.length) return '';
+        return '<div class="mt-3 space-y-2">'+allocs.map(a=>{
+          const spent = sum(mExp.filter(x=>x.categoryId===a.categoryId));
+          const lim = Number(a.amount)||0;
+          const ratio = lim>0 ? spent/lim : 0;
+          const pct = Math.min(100, ratio*100);
+          const col = ratio>=1?'#dc2626':ratio>=.8?'#d97706':'var(--primary)';
+          return `<div class="text-xs"><div class="flex justify-between"><span>${esc(catName(a.categoryId))}</span><span>${money(spent)} / ${money(lim)}</span></div>
+            <div class="bar mt-1" style="height:.35rem"><i style="width:${pct}%;background:${col}"></i></div></div>`;
+        }).join('')+'</div>';
+      })()}
+    </div>
+    <button data-act="budget" class="btn-ghost mt-3 text-sm">ویرایش بودجه</button>`;
+  } else {
+    budgetHtml = `<div class="empty"><p class="text-2xl">🧭</p>
+      <p class="font-bold text-sm mt-1">هنوز سقفی برای ${jMonthName(today)} نگذاشته‌ای</p>
+      <p class="muted text-sm mt-1 leading-7">بودجه یک راهنماست، نه قفل. با یک عدد تقریبی شروع کن و هر وقت خواستی عوضش کن.</p>
+      <button data-act="budget" class="btn mt-3 text-sm">تعیین بودجه ماهانه</button></div>`;
+  }
+
+  const efTarget = Number(ef.targetAmount)||0;
+  const efCurrent = Number(ef.currentAmount)||0;
+  const efPct = efTarget>0 ? Math.min(100, efCurrent/efTarget*100) : 0;
+
+  /* ریتم هفتگی و مدال‌ها */
+  const streakMsg = activeDays===0 ? 'هر وقت آماده بودی شروع کن؛ عجله‌ای نیست.'
+    : activeDays<=3 ? 'شروع خوبی است. هر ثبت، تصویر مالی‌ات را دقیق‌تر می‌کند.'
+    : activeDays<=6 ? 'ریتم خوبی داری. اگر یک روز جا افتاد، اتفاقی نیفتاده؛ همین‌طور ادامه بده.'
+    : 'یک هفته کامل ثبت! آفرین به خودت.';
+  const progressHtml = `<div class="card mt-4">
+    <h2 class="font-bold mb-1">ریتم هفتگی</h2>
+    <p class="muted text-xs mb-3">هفته از شنبه تا جمعه · مدال‌ها پایین همین کارت دیده می‌شوند</p>
+    <div class="flex items-center justify-between gap-2 text-sm"><b>${fa(activeDays)} از ۷ روز این هفته فعال بودی</b></div>
+    <div class="flex justify-between gap-1 mt-3">${week.map(d=>`<div class="text-center"><div class="dot ${d.on?'on':''} ${d.today?'today':''}" title="${d.name} · ${jDate(d.iso)}">${d.on?'✓':''}</div><div class="muted text-xs mt-1">${d.label}</div></div>`).join('')}</div>
+    <p class="muted text-sm mt-3 leading-7">${streakMsg}</p>
+    <h2 class="font-bold mt-5 mb-2">مدال‌های من</h2>
+    <p class="muted text-xs mb-3">با ثبت و مرور رفتارهای مفید، مدال‌ها این‌جا روشن می‌شوند.</p>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">${MEDALS.map(m=>{
+      const d = state.achievements.unlocked[m.id];
+      return `<div class="medal ${d?'on':'locked'}"><div class="text-2xl">${m.icon}</div><p class="font-bold text-sm mt-1">${m.name}</p><p class="muted text-xs mt-1 leading-6">${d?'کسب شد · '+jDate(d):m.hint}</p></div>`;
+    }).join('')}</div></div>`;
+
+  /* الگوهای هزینه (برای مدال الگویاب) */
+  let patternHtml = '';
+  if(exp.length){
+    let panel = '';
+    if(patternOpen){
+      const pe = mExp.length ? mExp : exp, peSum = sum(pe);
+      const pc = {}; pe.forEach(x=>{ pc[x.categoryId]=(pc[x.categoryId]||0)+(Number(x.amount)||0); });
+      const top = Object.entries(pc).sort((a,b)=>b[1]-a[1])[0];
+      const ess = sum(pe.filter(x=>x.isEssential!==false));
+      const lowW = pe.filter(x=>x.worth==='no'), highW = pe.filter(x=>x.worth==='yes');
+      const tagged = pe.filter(x=>x.worth).length;
+      panel = `<ul class="list-disc pr-5 space-y-2 text-sm leading-7 mt-3">
+        ${top&&peSum>0?`<li>بیشترین سهم هزینه‌ات به «${esc(catName(top[0]))}» رفته: ${fa(top[1]/peSum*100)}٪ از کل.</li>`:''}
+        ${peSum>0?`<li>${fa(ess/peSum*100)}٪ هزینه‌هایت ضروری و بقیه انتخابی است. هزینه انتخابی بد نیست؛ فقط خوب است بدانی کجاست.</li>`:''}
+        ${lowW.length?`<li>${fa(lowW.length)} خرید را «نه چندان» ارزشمند حس کرده‌ای (${money(sum(lowW))}). شاید جایی برای یک تغییر کوچک باشد.</li>`:''}
+        ${highW.length?`<li>${fa(highW.length)} خرید را ارزشمند دانسته‌ای (${money(sum(highW))}). پولت در مسیر چیزهای مهم برایت خرج شده.</li>`:''}
+        ${!tagged?`<li>هنگام ثبت هزینه می‌توانی مشخص کنی ارزشش را داشت یا نه، تا الگوی دقیق‌تری ببینی.</li>`:''}
+      </ul>`;
+    }
+    patternHtml = `<button data-act="pattern" class="btn-ghost text-sm mt-3">${patternOpen?'بستن الگوها':'🔍 الگوهای من را مرور کن'}</button>${panel}`;
+  }
+
+  const welcome = isEmpty ? `<section class="card mb-4" style="background:var(--soft)">
+    <h2 class="font-bold text-lg">خوش آمدی 🌱 سه قدم کوچک برای شروع</h2>
+    <p class="muted text-sm mt-2 leading-7">اینجا جای قضاوت نیست. لازم نیست همه‌چیز دقیق باشد.</p>
+    <div class="step-path mt-4">
+      <div class="s"><span class="n">۱</span><div><b class="text-sm">موجودی اولیه</b><p class="muted text-xs mt-0.5">چقدر الان داری؟</p>
+        <button data-act="initial" class="btn-ghost text-sm mt-1">تنظیم موجودی</button></div></div>
+      <div class="s"><span class="n">۲</span><div><b class="text-sm">اولین هزینه یا درآمد</b><p class="muted text-xs mt-0.5">حتی یک خرید کوچک</p>
+        <div class="flex flex-wrap gap-2 mt-1">
+          <button data-act="tx" data-kind="expense" class="btn text-sm">ثبت هزینه</button>
+          <button data-act="tx" data-kind="income" class="btn-ghost text-sm">ثبت درآمد</button>
+        </div></div></div>
+      <div class="s"><span class="n">۳</span><div><b class="text-sm">سقف بودجه ماه</b><p class="muted text-xs mt-0.5">یک عدد تقریبی کافی است</p>
+        <button data-act="budget" class="btn-ghost text-sm mt-1">تعیین بودجه</button></div></div>
+    </div>
+    <p class="muted text-xs mt-4"><a href="#lesson-1" class="underline" style="color:var(--primary)">یا شروع قدم اول آموزش ←</a></p>
+  </section>` : '';
+
+  $('#app').innerHTML = `
+  <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+    <div><h1 class="text-2xl font-bold">داشبورد مالی</h1><p class="muted text-sm">${jMonthName(today)}</p></div>
+    <div class="flex gap-2">
+      <button data-act="tx" data-kind="expense" class="btn">+ ثبت هزینه</button>
+      <button data-act="tx" data-kind="income" class="btn-ghost">+ ثبت درآمد</button>
+    </div>
+  </div>
+  <p class="summary-line mb-4">${summaryLine}</p>
+
+  ${welcome}
+
+  <div class="grid gap-4 sm:grid-cols-3">
+    <div class="card"><p class="muted text-sm">موجودی</p><p class="text-2xl font-bold mt-1 nw">${money(balance)}</p>
+      <button data-act="initial" class="btn-ghost mt-2 text-xs">تنظیم موجودی اولیه</button></div>
+    <div class="card"><p class="muted text-sm">درآمد این ماه</p><p class="text-2xl font-bold mt-1 nw" style="color:var(--primary)">${money(mInc)}</p></div>
+    <div class="card"><p class="muted text-sm">هزینه این ماه</p><p class="text-2xl font-bold mt-1 nw" style="color:var(--bad)">${money(mExpSum)}</p></div>
+  </div>
+
+  <div class="grid gap-4 md:grid-cols-2 mt-4">
+    <div class="card"><h2 class="font-bold mb-3">بودجه ماهانه</h2>${budgetHtml}</div>
+    <div class="card"><h2 class="font-bold mb-3">ذخیره اضطراری</h2>
+      ${efTarget?`<div class="flex justify-between text-sm"><span>${money(efCurrent)} از ${money(efTarget)}</span><span>${fa(Math.round(efPct))}٪</span></div><div class="bar mt-2"><i style="width:${efPct}%"></i></div>
+        <button data-act="ef" class="btn-ghost mt-3 text-sm">به‌روزرسانی</button>`
+      :`<div class="empty"><p class="text-2xl">🛟</p>
+        <p class="font-bold text-sm mt-1">صندوق اضطراری هنوز شروع نشده</p>
+        <p class="muted text-sm mt-1 leading-7">حتی یک هدف کوچک هم آرامش می‌آورد. هر وقت آماده بودی، یک عدد تقریبی بگذار.</p>
+        <button data-act="ef" class="btn mt-3 text-sm">تعیین هدف</button></div>`}
+    </div>
+  </div>
+
+
+  ${(() => {
+    const mk = jMonthKey(today);
+    const since = daysSinceBackup();
+    let html = '';
+    if(since === null || since > 30){
+      html += `<div class="card mb-4" style="border-color:var(--primary)"><p class="text-sm leading-7"><b>یادآور پشتیبان:</b> ${since===null?'هنوز خروجی نگرفته‌اید.':'بیش از ۳۰ روز از آخرین پشتیبان گذشته.'} از تنظیمات یا همین‌جا خروجی بگیرید.
+        <button data-act="export" class="btn-ghost text-sm mr-2">خروجی JSON</button></p></div>`;
+    }
+    const recurring = state.incomes.filter(x=>x.isRecurring);
+    const missing = [];
+    const seen = new Set();
+    recurring.forEach(r=>{
+      if(seen.has(r.source)) return;
+      seen.add(r.source);
+      const hasThisMonth = state.incomes.some(x => x.source===r.source && jMonthKey(x.date)===mk);
+      if(!hasThisMonth) missing.push(r);
+    });
+    if(missing.length){
+      html += `<div class="card mb-4"><h2 class="font-bold mb-2">درآمدهای تکرارشونده</h2>
+        <p class="muted text-sm mb-2">برای این ماه هنوز ثبت نشده‌اند:</p>
+        ${missing.map(r=>`<div class="flex flex-wrap items-center justify-between gap-2 py-1"><span class="text-sm">${esc(r.source)} · ${money(r.amount)}</span>
+          <button data-act="recur-add" data-id="${r.id}" class="btn-ghost text-sm">ثبت برای این ماه</button></div>`).join('')}
+      </div>`;
+    }
+    const debts = state.debts||[];
+    if(debts.length){
+      html += `<div class="card mb-4 mt-4"><div class="flex flex-wrap items-center justify-between gap-2 mb-3"><h2 class="font-bold">بدهی و اقساط</h2>
+        <button data-act="debt" class="btn-ghost text-sm">+ بدهی جدید</button></div>
+        ${debts.map(d=>`<div class="flex justify-between text-sm py-2.5 gap-2" style="border-bottom:1px solid var(--border)">
+          <div class="min-w-0"><b>${esc(d.name)}</b><p class="muted text-xs mt-0.5">مانده ${money(d.remaining)}${d.installment?` · قسط ${money(d.installment)}`:''}${d.dueDay?` · روز ${fa(d.dueDay)}`:''}</p></div>
+          <div class="flex gap-1 shrink-0"><button data-act="debt-edit" data-id="${d.id}" class="btn-ghost text-xs">ویرایش</button>
+          <button data-act="del-debt" data-id="${d.id}" class="muted text-xs" type="button" aria-label="حذف">✕</button></div>
+        </div>`).join('')}</div>`;
+    } else {
+      html += `<div class="card mb-4 mt-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+          <h2 class="font-bold">بدهی و اقساط</h2>
+          <button data-act="debt" class="btn-ghost text-sm">+ ثبت بدهی</button>
+        </div>
+        <div class="empty mt-2">
+          <p class="text-2xl">💳</p>
+          <p class="font-bold text-sm mt-1">بدهی یا قسطی ثبت نشده</p>
+          <p class="muted text-sm mt-1 leading-7">وام، قسط یا بدهی را اینجا ثبت کن تا در داشبورد و پرامپت دیده شود.</p>
+          <button data-act="debt" class="btn mt-3 text-sm">ثبت بدهی</button>
+        </div>
+      </div>`;
+    }
+    return html;
+  })()}
+
+  <div class="card mt-4">
+    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+      <h2 class="font-bold">اهداف پس‌انداز</h2>
+      <button data-act="goal" class="btn-ghost text-sm">+ هدف جدید</button>
+    </div>
+    ${(state.savingsGoals&&state.savingsGoals.length) ? state.savingsGoals.map(g=>{
+      const t=Number(g.targetAmount)||0, c=Number(g.currentAmount)||0;
+      const p=t>0?Math.min(100,c/t*100):0;
+      return `<div class="mb-3 pb-3" style="border-bottom:1px solid var(--border)">
+        <div class="flex justify-between gap-2 text-sm"><b>${esc(g.name||'هدف')}</b>
+          <div class="flex gap-2 items-center">
+            <button data-act="goal-add" data-id="${g.id}" class="btn-ghost text-xs" type="button">+ مبلغ</button>
+            <button data-act="goal-edit" data-id="${g.id}" class="btn-ghost text-xs" type="button">ویرایش</button>
+            <button data-act="del-goal" data-id="${g.id}" class="muted text-xs" type="button" aria-label="حذف هدف">✕</button>
+          </div></div>
+        <div class="flex justify-between text-xs muted mt-1"><span>${money(c)} از ${money(t)}</span><span>${fa(Math.round(p))}٪</span></div>
+        <div class="bar mt-1"><i style="width:${p}%"></i></div>
+        ${g.targetDate?`<p class="muted text-xs mt-1">تاریخ هدف: ${jDate(g.targetDate)}</p>`:`<p class="muted text-xs mt-1">بدون تاریخ هدف</p>`}
+      </div>`;
+    }).join('') : `<div class="empty"><p class="text-2xl">🎯</p>
+      <p class="font-bold text-sm mt-1">هنوز هدفی نداری</p>
+      <p class="muted text-sm mt-1 leading-7">یک هدف کوچک تعریف کن تا در پرامپت مشاور هم دیده شود.</p>
+      <button data-act="goal" class="btn mt-3 text-sm">تعیین هدف</button></div>`}
+  </div>
+
+  <div class="card mt-4 flex flex-wrap items-center justify-between gap-3" style="background:var(--soft)">
+    <div class="min-w-0 flex-1">
+      <h2 class="font-bold">🤖 تحلیل و پیشنهاد مالی با هوش مصنوعی</h2>
+      <p class="muted text-sm mt-1 leading-7">خلاصه داده‌های مالی‌ات را به یک پرامپت رسمی و ساختاریافته (همراه با سلب مسئولیت) تبدیل کن و در ChatGPT بچسبان. می‌توانی فایل TXT یا PDF هم بگیری.</p>
+    </div>
+    <button data-act="advisor" class="btn text-sm">📋 دریافت پرامپت تحلیل و پیشنهاد مالی</button>
+  </div>
+
+  ${progressHtml}
+
+  <div class="grid gap-4 md:grid-cols-2 mt-4">
+    <div class="card"><h2 class="font-bold mb-3">هزینه‌ها بر اساس دسته</h2>
+      ${cats.length? chartHtml + cats.map(([id,v])=>`<div class="mb-3"><div class="flex justify-between text-sm"><span>${esc(catName(id))}</span><span class="muted">${money(v)}</span></div><div class="bar mt-1"><i style="width:${mExpSum?v/mExpSum*100:0}%"></i></div></div>`).join('')
+      : `<div class="empty"><p class="text-2xl">🗂️</p><p class="font-bold text-sm mt-1">این ماه هنوز ساکت است</p>
+        <p class="muted text-sm mt-1 leading-7">هر هزینه‌ای که ثبت کنی، اینجا به تصویر تبدیل می‌شود.</p>
+        <button data-act="tx" data-kind="expense" class="btn mt-3 text-sm">ثبت هزینه</button></div>`}
+      ${patternHtml}
+    </div>
+    <div class="card"><h2 class="font-bold mb-2">قدم بعدی در مسیر آموزشی</h2>
+      <div class="flex justify-between text-sm muted"><span>${done.length.toLocaleString('fa-IR')} از ۱۲ قدم</span></div>
+      <div class="bar mt-2"><i style="width:${done.length/12*100}%"></i></div>
+      ${next?`<p class="mt-3">قدم ${next.toLocaleString('fa-IR')}: <b>${stepTitle(next)}</b></p>
+        <a href="#education" class="btn-ghost inline-block mt-3 text-sm">رفتن به مسیر آموزشی</a>`
+        :`<p class="mt-3">🎉 همه قدم‌ها را کامل کرده‌اید.</p>`}
+    </div>
+  </div>
+
+  <div class="card mt-4">
+    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+      <h2 class="font-bold">تراکنش‌های اخیر</h2>
+      ${txTotal > 8 ? `<a href="#transactions" class="btn-ghost text-sm">مشاهده همه (${fa(txTotal)})</a>` : txTotal ? `<a href="#transactions" class="btn-ghost text-sm">مدیریت تراکنش‌ها</a>` : ''}
+    </div>
+    ${tx.length? `<ul class="divide-y" style="--tw-divide-opacity:1">${tx.map(t=>`
+      <li class="tx-row flex items-center justify-between py-2.5 gap-3 px-1" style="border-color:var(--border)" data-act="edit-tx" data-kind="${t.kind}" data-id="${t.id}" title="برای ویرایش ضربه بزنید">
+        <div class="min-w-0"><p class="truncate">${esc(t.label)}</p>
+          <p class="muted text-xs">${jDate(t.date)}${t.kind==='expense'?' · '+esc(catName(t.categoryId)):''}${t.kind==='expense'&&WORTH[t.worth]?' · '+WORTH[t.worth][0]+' '+WORTH[t.worth][1]:''}</p></div>
+        <div class="flex items-center gap-3 nw" data-no-row-edit="1">
+          <b style="color:${t.kind==='income'?'var(--primary)':'var(--bad)'}">${t.kind==='income'?'+':'−'}${fa(t.amount)}</b>
+          <button data-act="del" data-kind="${t.kind}" data-id="${t.id}" class="muted text-sm px-2 py-1" aria-label="حذف تراکنش" type="button">✕</button>
+        </div></li>`).join('')}</ul>`
+      : `<div class="empty"><p class="text-2xl">📝</p><p class="font-bold text-sm mt-1">هنوز تراکنشی ثبت نشده</p>
+        <p class="muted text-sm mt-1 leading-7">اولین ثبت، حتی کوچک، شروع یک تصویر روشن است.</p>
+        <div class="flex flex-wrap gap-2 justify-center mt-3">
+          <button data-act="tx" data-kind="expense" class="btn text-sm">ثبت هزینه</button>
+          <button data-act="tx" data-kind="income" class="btn-ghost text-sm">ثبت درآمد</button></div></div>`}
+  </div>
+
+  <div class="card mt-4 mb-2">
+    <h2 class="font-bold mb-2">نظر و پیشنهاد</h2>
+    <p class="muted text-sm leading-7 mb-3">اگر ایده یا انتقادی دارید، می‌توانید ناشناس بفرستید. این لینک به دادهٔ مالی شما دسترسی ندارد.</p>
+    <a class="btn text-sm inline-flex items-center justify-center" href="https://www.daigo.ir/secret/p-c503b17b" target="_blank" rel="noopener noreferrer">💬 ارسال نظر و پیشنهاد ناشناس</a>
+  </div>`;
+  if(fresh.length) setTimeout(()=>showToast('🏅 مدال جدید: '+fresh.map(m=>m.name).join('، ')), 700);
+}
+
+/* ---------- لیست کامل تراکنش‌ها ---------- */
+function allTransactions(){
+  return [
+    ...state.incomes.map(x => ({...x, kind: 'income', label: x.source})),
+    ...state.expenses.map(x => ({...x, kind: 'expense', label: x.title}))
+  ].sort((a, b) => b.date.localeCompare(a.date) || String(b.id).localeCompare(String(a.id)));
+}
+function prevJalaliMonthKey(){
+  const today = todayISO();
+  const cur = jMonthKey(today);
+  for(let i = 1; i <= 40; i++){
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    const k = jMonthKey(toLocalISO(d));
+    if(k && k !== cur) return k;
+  }
+  return cur;
+}
+function renderTransactions(){
+  const all = allTransactions();
+  const mk = jMonthKey(todayISO());
+  const pmk = prevJalaliMonthKey();
+  let list = all;
+  if(txFilter !== 'all') list = list.filter(t => t.kind === txFilter);
+  if(txMonth === 'current') list = list.filter(t => jMonthKey(t.date) === mk);
+  else if(txMonth === 'prev') list = list.filter(t => jMonthKey(t.date) === pmk);
+  else if(txMonth === '3m'){ const keys = new Set(jalaliMonthKeysBack(3)); list = list.filter(t => keys.has(jMonthKey(t.date))); }
+  const q = (txSearch || '').trim().toLowerCase();
+  if(q) list = list.filter(t => (t.label || '').toLowerCase().includes(q) || (t.kind === 'expense' && catName(t.categoryId).toLowerCase().includes(q)));
+  const typeFilters = [
+    {id: 'all', label: 'همه'},
+    {id: 'expense', label: 'هزینه'},
+    {id: 'income', label: 'درآمد'}
+  ];
+  const monthFilters = [
+    {id: 'current', label: 'این ماه'},
+    {id: 'prev', label: 'ماه قبل'},
+    {id: '3m', label: '۳ ماه اخیر'},
+    {id: 'all', label: 'همه زمان‌ها'}
+  ];
+  $('#app').innerHTML = `
+  <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+    <div>
+      <h1 class="text-2xl font-bold">همه تراکنش‌ها</h1>
+      <p class="muted text-sm mt-1">${fa(list.length)} مورد</p>
+    </div>
+    <div class="flex gap-2">
+      <button data-act="tx" data-kind="expense" class="btn text-sm">+ هزینه</button>
+      <button data-act="tx" data-kind="income" class="btn-ghost text-sm">+ درآمد</button>
+    </div>
+  </div>
+  <div class="mb-3">
+    <input class="inp" id="txSearchInput" type="search" placeholder="جستجو در عنوان یا دسته…" value="${esc(txSearch)}" aria-label="جستجوی تراکنش">
+  </div>
+  <div class="flex flex-wrap gap-2 mb-2">
+    ${typeFilters.map(f => `<button data-act="tx-filter" data-filter="${f.id}" class="${txFilter === f.id ? 'btn' : 'btn-ghost'} text-sm">${f.label}</button>`).join('')}
+  </div>
+  <div class="flex flex-wrap gap-2 mb-4">
+    ${monthFilters.map(f => `<button data-act="tx-month" data-month="${f.id}" class="${txMonth === f.id ? 'btn' : 'btn-ghost'} text-sm">${f.label}</button>`).join('')}
+  </div>
+  <div class="card">
+    ${list.length ? `<ul class="divide-y" style="--tw-divide-opacity:1">${list.map(t => `
+      <li class="tx-row flex items-center justify-between py-2.5 gap-3 px-1" style="border-color:var(--border)" data-act="edit-tx" data-kind="${t.kind}" data-id="${t.id}" title="برای ویرایش ضربه بزنید">
+        <div class="min-w-0">
+          <p class="truncate">${esc(t.label)}</p>
+          <p class="muted text-xs">${jDate(t.date)}${t.kind === 'expense' ? ' · ' + esc(catName(t.categoryId)) : ''}${t.kind === 'expense' && WORTH[t.worth] ? ' · ' + WORTH[t.worth][0] + ' ' + WORTH[t.worth][1] : ''}${t.kind === 'income' && t.isRecurring ? ' · تکرارشونده' : ''}</p>
+        </div>
+        <div class="flex items-center gap-3 nw" data-no-row-edit="1">
+          <b style="color:${t.kind === 'income' ? 'var(--primary)' : 'var(--bad)'}">${t.kind === 'income' ? '+' : '−'}${fa(t.amount)}</b>
+          <button data-act="del" data-kind="${t.kind}" data-id="${t.id}" class="muted text-sm px-2 py-1" aria-label="حذف تراکنش" type="button">✕</button>
+        </div>
+      </li>`).join('')}</ul>`
+    : `<div class="empty"><p class="text-2xl">📝</p>
+        <p class="font-bold text-sm mt-1">${all.length ? 'موردی با این فیلتر پیدا نشد' : 'هنوز تراکنشی ثبت نشده'}</p>
+        <p class="muted text-sm mt-1 leading-7">از دکمه‌های بالا یا دکمه + پایین صفحه ثبت کنید.</p>
+      </div>`}
+  </div>
+  <p class="muted text-sm mt-4 text-center">برای ویرایش، روی هر ردیف ضربه بزنید · <a href="#dashboard" class="underline" style="color:var(--primary)">داشبورد</a></p>`;
+  const si = $('#txSearchInput');
+  if(si){
+    si.addEventListener('input', () => {
+      txSearch = si.value;
+      clearTimeout(si._t);
+      si._t = setTimeout(() => {
+        window._txSearchKeepFocus = true;
+        renderTransactions();
+      }, 220);
+    });
+    if(window._txSearchKeepFocus){
+      window._txSearchKeepFocus = false;
+      si.focus();
+      const pos = si.value.length;
+      try{ si.setSelectionRange(pos, pos); }catch(e){}
+    }
+  }
+}
+
+/* ---------- خروجی و ورود پشتیبان ---------- */
+function exportData(){
+  try{
+    state.settings.lastBackupAt = todayISO();
+    save();
+    const payload = {
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      data: state
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'hamrah-mali-backup-' + todayISO() + '.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('فایل پشتیبان (بدون رمز) دانلود شد.');
+  }catch(e){
+    console.warn(e);
+    showToast('دانلود پشتیبان ممکن نشد.');
+  }
+}
+async function exportDataEncrypted(){
+  const p1 = prompt('رمز پشتیبان را وارد کنید (حداقل ۸ کاراکتر):');
+  if(p1 === null) return;
+  if(String(p1).length < 8){ showToast('رمز باید حداقل ۸ کاراکتر باشد.'); return; }
+  const p2 = prompt('تکرار رمز پشتیبان:');
+  if(p2 === null) return;
+  if(p1 !== p2){ showToast('دو رمز یکسان نیستند.'); return; }
+  try{
+    state.settings.lastBackupAt = todayISO();
+    save();
+    const payload = await encryptJson({
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      data: state
+    }, p1);
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'hamrah-mali-backup-encrypted-' + todayISO() + '.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('پشتیبان رمزگذاری‌شده دانلود شد.');
+  }catch(e){
+    console.warn(e);
+    showToast('رمزگذاری پشتیبان ممکن نشد.');
+  }
+}
+
+function daysSinceBackup(){
+  const d = state.settings.lastBackupAt;
+  if(!d) return null;
+  const a = new Date(d+'T12:00:00'), b = new Date(todayISO()+'T12:00:00');
+  return Math.round((b - a) / 864e5);
+}
+function sanitizeTxList(arr, kind){
+  if(!Array.isArray(arr)) return [];
+  return arr.filter(x => x && typeof x === 'object').map(x => {
+    const amount = Number(x.amount);
+    const date = String(x.date||'');
+    if(!Number.isFinite(amount) || amount < 0) return null;
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(date)) return null;
+    const id = String(x.id || uid()).slice(0, 80);
+    if(kind === 'expense'){
+      return {
+        id, amount, date,
+        categoryId: String(x.categoryId||'').slice(0,40),
+        title: String(x.title||'بدون عنوان').slice(0,80),
+        paymentMethod: String(x.paymentMethod||'').slice(0,40),
+        isEssential: x.isEssential !== false,
+        worth: ['yes','ok','no'].includes(x.worth) ? x.worth : ''
+      };
+    }
+    return {
+      id, amount, date,
+      source: String(x.source||'بدون منبع').slice(0,80),
+      description: String(x.description||'').slice(0,120),
+      isRecurring: !!x.isRecurring
+    };
+  }).filter(Boolean);
+}
+function applyImportedState(d){
+  const base = DEFAULT();
+  const incomes = sanitizeTxList(d.incomes, 'income');
+  const expenses = sanitizeTxList(d.expenses, 'expense');
+  if(Array.isArray(d.incomes) && d.incomes.length && !incomes.length)
+    throw new Error('هیچ درآمد معتبری در فایل نبود');
+  if(Array.isArray(d.expenses) && d.expenses.length && !expenses.length)
+    throw new Error('هیچ هزینه معتبری در فایل نبود');
+  const categories = Array.isArray(d.categories) && d.categories.length
+    ? d.categories.filter(c => c && c.id && c.name).map(c => ({
+        id: String(c.id).slice(0,40),
+        name: String(c.name).slice(0,40),
+        type: c.type === 'income' ? 'income' : 'expense',
+        isActive: c.isActive !== false,
+        isCustom: !!c.isCustom
+      }))
+    : base.categories;
+  const pinHash = (d.settings && d.settings.pinHash) ? String(d.settings.pinHash) : '';
+  const pinEnabled = !!(d.settings && d.settings.pinEnabled && pinHash);
+  state = {
+    settings: Object.assign(base.settings, d.settings || {}, { pinHash, pinEnabled }),
+    categories,
+    incomes,
+    expenses,
+    budgets: Array.isArray(d.budgets) ? d.budgets.map(b => Object.assign({allocations:[]}, b, {allocations: Array.isArray(b.allocations)?b.allocations:[]})) : [],
+    savingsGoals: Array.isArray(d.savingsGoals) ? d.savingsGoals.filter(g => g && g.name).map(g => ({
+      id: String(g.id||uid()).slice(0,80),
+      name: String(g.name).slice(0,60),
+      targetAmount: Math.max(0, Number(g.targetAmount)||0),
+      currentAmount: Math.max(0, Number(g.currentAmount)||0),
+      targetDate: (g.targetDate && /^\d{4}-\d{2}-\d{2}$/.test(g.targetDate)) ? g.targetDate : ''
+    })) : [],
+    debts: Array.isArray(d.debts) ? d.debts.filter(x => x && x.name).map(x => ({
+      id: String(x.id||uid()).slice(0,80),
+      name: String(x.name).slice(0,60),
+      remaining: Math.max(0, Number(x.remaining)||0),
+      installment: Math.max(0, Number(x.installment)||0),
+      dueDay: Math.min(31, Math.max(0, Number(x.dueDay)||0))
+    })) : [],
+    emergencyFund: Object.assign(base.emergencyFund, d.emergencyFund || {}),
+    educationProgress: Object.assign(base.educationProgress, d.educationProgress || {}),
+    achievements: normAch(d.achievements)
+  };
+  if(!state.settings.lastBackupAt) state.settings.lastBackupAt = todayISO();
+  save();
+  applyTheme();
+  setSessionUnlocked(true);
+  showToast('پشتیبان با موفقیت وارد شد.');
+  render();
+}
+function importData(file){
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = async () => {
+    try{
+      const parsed = JSON.parse(reader.result);
+      if(parsed && parsed.encrypted){
+        const pass = prompt('این فایل رمزگذاری شده است. رمز را وارد کنید:');
+        if(pass === null) return;
+        let unlocked;
+        try{ unlocked = await decryptJson(parsed, pass); }
+        catch(err){ showToast('رمز نادرست است یا فایل خراب است.'); return; }
+        const d = unlocked.data || unlocked;
+        if(!d || typeof d !== 'object') throw new Error('ساختار نامعتبر');
+        applyImportedState(d);
+        return;
+      }
+      const d = parsed.data || parsed;
+      if(!d || typeof d !== 'object') throw new Error('ساختار نامعتبر');
+      applyImportedState(d);
+    }catch(e){
+      console.warn(e);
+      showToast('فایل پشتیبان معتبر نیست یا خوانده نشد.');
+    }
+  };
+  reader.onerror = () => showToast('خواندن فایل ممکن نشد.');
+  reader.readAsText(file, 'utf-8');
+}
+
+function monthStats(mk){
+  const inc = state.incomes.filter(x => jMonthKey(x.date)===mk);
+  const exp = state.expenses.filter(x => jMonthKey(x.date)===mk);
+  const byCat = {};
+  exp.forEach(x => { const id=x.categoryId||''; byCat[id]=(byCat[id]||0)+(Number(x.amount)||0); });
+  return { mk, incSum: sum(inc), expSum: sum(exp), net: sum(inc)-sum(exp), byCat, incCount: inc.length, expCount: exp.length };
+}
+function renderReports(){
+  const keys = jalaliMonthKeysBack(6).reverse();
+  const stats = keys.map(monthStats);
+  const cur = stats[stats.length-1] || monthStats(jMonthKey(todayISO()));
+  const prev = stats.length>1 ? stats[stats.length-2] : null;
+  const maxBar = Math.max(1, ...stats.flatMap(s => [s.incSum, s.expSum]));
+  const delta = (a,b) => {
+    if(b==null || b===0) return a ? 'جدید' : '—';
+    const d = ((a-b)/b)*100;
+    const sign = d>0?'+':'';
+    return sign + fa(Math.round(d)) + '٪';
+  };
+  const catIds = new Set([...Object.keys(cur.byCat), ...(prev?Object.keys(prev.byCat):[])]);
+  const catRows = [...catIds].map(id => {
+    const c = cur.byCat[id]||0, p = prev ? (prev.byCat[id]||0) : 0;
+    return {id, c, p, diff: c-p};
+  }).sort((a,b)=>b.c-a.c);
+
+  $('#app').innerHTML = `
+  <section class="mb-5">
+    <p class="text-sm font-bold" style="color:var(--primary)">تحلیل روند</p>
+    <h1 class="text-2xl font-bold mt-1">گزارش‌ها</h1>
+    <p class="muted text-sm mt-2">مقایسه ماه جاری با ماه قبل و روند ۶ ماه اخیر.</p>
+  </section>
+  <div class="grid gap-4 md:grid-cols-2 mb-4">
+    <div class="card">
+      <h2 class="font-bold mb-2">ماه جاری</h2>
+      <div class="report-row"><span>درآمد</span><b style="color:var(--primary)">${money(cur.incSum)}</b></div>
+      <div class="report-row"><span>هزینه</span><b style="color:var(--bad)">${money(cur.expSum)}</b></div>
+      <div class="report-row"><span>مانده</span><b>${cur.net<0?'−':''}${money(Math.abs(cur.net))}</b></div>
+      <div class="report-row"><span>تعداد تراکنش</span><span class="muted">${fa(cur.incCount+cur.expCount)}</span></div>
+    </div>
+    <div class="card">
+      <h2 class="font-bold mb-2">نسبت به ماه قبل</h2>
+      ${prev ? `
+        <div class="report-row"><span>تغییر درآمد</span><span>${delta(cur.incSum, prev.incSum)}</span></div>
+        <div class="report-row"><span>تغییر هزینه</span><span>${delta(cur.expSum, prev.expSum)}</span></div>
+        <div class="report-row"><span>درآمد ماه قبل</span><span class="muted">${money(prev.incSum)}</span></div>
+        <div class="report-row"><span>هزینه ماه قبل</span><span class="muted">${money(prev.expSum)}</span></div>
+      ` : `<p class="muted text-sm">دادهٔ ماه قبل برای مقایسه کافی نیست.</p>`}
+    </div>
+  </div>
+  <div class="card mb-4">
+    <h2 class="font-bold mb-3">روند ۶ ماه (درآمد / هزینه)</h2>
+    <div class="chart-bar" style="height:9rem">${stats.map(s => {
+      const hi = Math.max(4, Math.round(s.incSum/maxBar*100));
+      const he = Math.max(4, Math.round(s.expSum/maxBar*100));
+      const label = s.mk; // year-month
+      const parts = String(s.mk).split('-');
+      const short = parts.length===2 ? parts[1] : s.mk;
+      return `<div title="درآمد ${money(s.incSum)} · هزینه ${money(s.expSum)}">
+        <div style="display:flex;align-items:flex-end;gap:2px;height:100px;width:100%;justify-content:center">
+          <div class="col" style="height:${hi}px;background:var(--primary);width:40%;max-width:1.1rem"></div>
+          <div class="col" style="height:${he}px;background:var(--bad);width:40%;max-width:1.1rem;opacity:.85"></div>
+        </div>
+        <div class="lbl">${esc(short)}</div>
+      </div>`;
+    }).join('')}</div>
+    <p class="muted text-xs mt-2">میلهٔ سبز: درآمد · میلهٔ قرمز: هزینه · برچسب: شماره ماه شمسی</p>
+  </div>
+  <div class="card mb-4">
+    <h2 class="font-bold mb-3">هزینه به تفکیک دسته (ماه جاری${prev?' در برابر ماه قبل':''})</h2>
+    ${catRows.length ? catRows.map(r => `
+      <div class="report-row">
+        <span>${esc(catName(r.id))}</span>
+        <span class="text-left nw"><b>${money(r.c)}</b>${prev?` <span class="muted text-xs">(${r.diff>0?'+':''}${money(r.diff)})</span>`:''}</span>
+      </div>`).join('') : `<p class="muted text-sm">هزینه‌ای در این ماه ثبت نشده.</p>`}
+  </div>
+  <p class="text-center text-sm muted"><a href="#dashboard" class="underline" style="color:var(--primary)">بازگشت به داشبورد</a>
+    · <a href="#education" class="underline" style="color:var(--primary)">آموزش</a></p>`;
+}
+
+function renderSettings(){
+  const theme = state.settings.theme || 'system';
+  const since = daysSinceBackup();
+  const backupMsg = since === null
+    ? 'هنوز پشتیبان نگرفته‌اید. پیشنهاد می‌شود همین حالا یک خروجی JSON بگیرید.'
+    : since === 0 ? 'امروز پشتیبان گرفته‌اید. عالی است.'
+    : since > 30 ? `آخرین پشتیبان ${fa(since)} روز پیش بود. بهتر است دوباره خروجی بگیرید.`
+    : `آخرین پشتیبان: ${jDate(state.settings.lastBackupAt)} (${fa(since)} روز پیش).`;
+  const expCats = state.categories.filter(c => c.type==='expense');
+  const incCats = state.categories.filter(c => c.type==='income');
+  $('#app').innerHTML = `
+  <section class="mb-6">
+    <p class="text-sm font-bold" style="color:var(--primary)">کنترل و پشتیبان</p>
+    <h1 class="text-2xl md:text-3xl font-bold mt-2">تنظیمات</h1>
+    <p class="muted mt-2 leading-7">تم، دسته‌ها، پشتیبان‌گیری و پاک‌سازی داده‌ها.</p>
+  </section>
+  <div class="card mb-4">
+    <h2 class="font-bold mb-3">تم ظاهری</h2>
+    <div class="flex flex-wrap gap-2">
+      ${[['system','🌓 سیستم'],['light','☀️ روشن'],['dark','🌙 تاریک']].map(([id,label])=>
+        `<button type="button" class="theme-chip ${theme===id?'on':''}" data-act="set-theme" data-theme="${id}">${label}</button>`
+      ).join('')}
+    </div>
+  </div>
+  <div class="card mb-4">
+    <h2 class="font-bold mb-3">مالی</h2>
+    <div class="flex flex-wrap gap-2">
+      <button data-act="initial" class="btn-ghost text-sm">موجودی اولیه (${money(state.settings.initialBalance||0)})</button>
+      <button data-act="budget" class="btn-ghost text-sm">بودجه ماهانه</button>
+      <button data-act="ef" class="btn-ghost text-sm">ذخیره اضطراری</button>
+      <button data-act="debt" class="btn-ghost text-sm">بدهی / قسط</button>
+    </div>
+    <label class="block text-sm mt-4">واحد پول
+      <input class="inp mt-1" id="currencyInput" value="${esc(state.settings.currency||'تومان')}" maxlength="20">
+    </label>
+    <button data-act="save-currency" class="btn mt-3 text-sm">ذخیره واحد پول</button>
+  </div>
+  <div class="card mb-4">
+    <h2 class="font-bold mb-2">دسته‌بندی‌ها</h2>
+    <p class="muted text-sm mb-2">هزینه</p>
+    <div class="flex flex-wrap gap-2 mb-3">
+      ${expCats.map(c=>`<span class="text-xs rounded-full px-2 py-1" style="border:1px solid var(--border);opacity:${c.isActive?1:.45}">${esc(c.name)}${c.isCustom?' ★':''}
+        <button type="button" data-act="cat-toggle" data-id="${c.id}" class="underline mr-1">${c.isActive?'خاموش':'روشن'}</button>
+        ${c.isCustom?`<button type="button" data-act="cat-del" data-id="${c.id}" class="muted">✕</button>`:''}
+      </span>`).join('')}
+    </div>
+    <p class="muted text-sm mb-2">درآمد</p>
+    <div class="flex flex-wrap gap-2 mb-3">
+      ${incCats.map(c=>`<span class="text-xs rounded-full px-2 py-1" style="border:1px solid var(--border);opacity:${c.isActive?1:.45}">${esc(c.name)}${c.isCustom?' ★':''}
+        <button type="button" data-act="cat-toggle" data-id="${c.id}" class="underline mr-1">${c.isActive?'خاموش':'روشن'}</button>
+        ${c.isCustom?`<button type="button" data-act="cat-del" data-id="${c.id}" class="muted">✕</button>`:''}
+      </span>`).join('')}
+    </div>
+    <button data-act="cat-add" class="btn-ghost text-sm">+ دستهٔ سفارشی</button>
+  </div>
+  <div class="card mb-4">
+    <h2 class="font-bold mb-2">پشتیبان‌گیری</h2>
+    <p class="muted text-sm leading-7 mb-2">${backupMsg}</p>
+    <p class="muted text-sm leading-7 mb-3">داده‌ها فقط محلی‌اند؛ با پاک شدن داده‌های مرورگر از بین می‌روند. هر چند وقت یک‌بار خروجی بگیرید. روی دستگاه مشترک، پشتیبان <b>رمزدار</b> توصیه می‌شود.</p>
+    <div class="flex flex-wrap gap-2">
+      <button data-act="export" class="btn text-sm">خروجی JSON</button>
+      <button data-act="export-enc" class="btn-ghost text-sm">خروجی رمزدار</button>
+      <label class="btn-ghost text-sm cursor-pointer">ورود پشتیبان<input id="importInput" type="file" accept=".json,application/json" class="sr-only"></label>
+    </div>
+  </div>
+  <div class="card mb-4">
+    <h2 class="font-bold mb-2">امنیت و قفل</h2>
+    <p class="muted text-sm leading-7 mb-3">قفل پین از نگاه سریع دیگران روی همین مرورگر جلوگیری می‌کند. رمز کامل دیسک نیست؛ برای امنیت بیشتر قفل صفحه گوشی/لپ‌تاپ را فعال کنید و از پشتیبان رمزدار استفاده کنید.</p>
+    <div class="flex flex-wrap gap-2 mb-2">
+      ${state.settings.pinEnabled
+        ? `<button data-act="pin-disable" class="btn-ghost text-sm">خاموش کردن پین</button>
+           <button data-act="pin-change" class="btn-ghost text-sm">تغییر پین</button>
+           <button data-act="lock-now" class="btn text-sm">قفل اکنون</button>`
+        : `<button data-act="pin-enable" class="btn text-sm">فعال‌سازی پین</button>`}
+    </div>
+    <p class="muted text-xs leading-6">هشدار: روی رایانه مشترک یا بدون قفل صفحه، داده مالی را در مرورگر نگه ندارید.</p>
+  </div>
+  <div class="card mb-4">
+    <h2 class="font-bold mb-2">صفحات</h2>
+    <div class="flex flex-wrap gap-2">
+      <a href="#help" class="btn-ghost text-sm">راهنما و FAQ</a>
+      <a href="#reports" class="btn-ghost text-sm">گزارش‌ها</a>
+      <a href="#education" class="btn-ghost text-sm">مسیر آموزشی</a>
+    </div>
+  </div>
+  <div class="card mb-4">
+    <h2 class="font-bold mb-2">سلب مسئولیت</h2>
+    <p class="muted text-sm leading-7">همراه مالی ابزار ثبت و آموزش است و مشاوره مالی، حقوقی یا سرمایه‌گذاری رسمی ارائه نمی‌دهد. تصمیم‌گیری نهایی بر عهدهٔ شماست.</p>
+  </div>
+  <div class="card mb-4">
+    <h2 class="font-bold mb-2">نظر و پیشنهاد</h2>
+    <p class="muted text-sm leading-7 mb-3">بدون نام و بدون ثبت‌نام می‌توانید نظر یا پیشنهادتان را بفرستید. لینک در تب جدید باز می‌شود و به دادهٔ مالی شما دسترسی ندارد.</p>
+    <a class="btn text-sm inline-flex items-center justify-center" href="https://www.daigo.ir/secret/p-c503b17b" target="_blank" rel="noopener noreferrer">💬 ارسال نظر و پیشنهاد ناشناس</a>
+  </div>
+  <div class="card">
+    <h2 class="font-bold mb-2" style="color:var(--bad)">منطقه خطر</h2>
+    <p class="muted text-sm leading-7 mb-3">پاک‌سازی برگشت‌ناپذیر است. قبلش پشتیبان بگیرید.</p>
+    <button data-act="reset-all" class="btn-ghost text-sm" style="color:var(--bad)">پاک‌سازی همه داده‌ها</button>
+  </div>`;
+  const imp = $('#importInput');
+  if(imp) imp.onchange = e => {
+    const file = e.target.files && e.target.files[0];
+    e.target.value = '';
+    if(!file) return;
+    if(!confirm('داده‌های فعلی با محتوای فایل پشتیبان جایگزین می‌شوند. ادامه می‌دهید؟')) return;
+    importData(file);
+  };
+}
+
+function closeFab(){
+  fabOpen = false;
+  const m = $('#fabMenu');
+  if(m) m.classList.remove('open');
+}
+function updateBottomNav(){
+  const hash = (location.hash || '#home').replace('#','') || 'home';
+  const key = hash.startsWith('lesson') ? 'education' : hash;
+  document.querySelectorAll('#bottomNav a').forEach(a => {
+    a.classList.toggle('on', a.dataset.nav === key);
+  });
+}
+
+/* ---------- مسیر آموزشی ۱۲ قدمی ---------- */
+function isLessonUnlocked(n, done){
+  if(n <= 1) return true;
+  return done.includes(n - 1);
+}
+function renderEducation(){
+  const done = state.educationProgress.completedSteps || [];
+  const pct = done.length/EDUCATION_STEPS.length*100;
+  const nextOpen = [1,2,3,4,5,6,7,8,9,10,11,12].find(n => !done.includes(n) && isLessonUnlocked(n, done));
+  $('#app').innerHTML = `
+    <section class="mb-6">
+      <p class="text-sm font-bold" style="color:var(--primary)">یادگیری با قدم‌های کوچک</p>
+      <h1 class="text-2xl md:text-3xl font-bold mt-2">مسیر آموزش مالی؛ از شناخت تا عادت</h1>
+      <p class="muted mt-3 leading-8">هر ۱۲ قدم مشخص است، اما محتوا و تکمیل فقط قدم‌به‌قدم باز می‌شود. برای باز شدن هر قدم، قدم قبلی را تکمیل کنید.</p>
+      <div class="card mt-4">
+        <div class="flex justify-between gap-3 text-sm"><b>پیشرفت شما</b><span>${fa(done.length)} از ۱۲ قدم</span></div>
+        <div class="bar mt-2"><i style="width:${pct}%"></i></div>
+        <p class="muted text-sm mt-2">${done.length===12?'آفرین! هر ۱۲ قدم را تکمیل کرده‌اید. هر ماه می‌توانید تمرین‌ها را دوباره مرور کنید.':(nextOpen?`قدم باز بعدی: ${fa(nextOpen)} — ${esc(stepTitle(nextOpen))}`:'قدم بعدی را پس از انجام تمرین علامت بزنید.')}</p>
+      </div>
+      <div class="flex flex-wrap gap-2 mt-3">
+        ${EDUCATION_STEPS.map((s,i)=>{
+          const n=i+1, complete=done.includes(n), unlocked=isLessonUnlocked(n, done);
+          const cls = complete ? 'btn text-sm' : unlocked ? 'btn-ghost text-sm' : 'btn-ghost text-sm opacity-50';
+          return `<a href="#lesson-${n}" class="${cls}" title="${esc(s.title)}">${complete?'✓ ':!unlocked?'🔒 ':''}${fa(n)}</a>`;
+        }).join('')}
+      </div>
+    </section>
+    <div class="space-y-4">
+    ${EDUCATION_STEPS.map((s,i)=>{
+      const n=i+1, complete=done.includes(n), unlocked=isLessonUnlocked(n, done);
+      if(!unlocked){
+        return `<article class="card" id="lesson-${n}" style="opacity:.72">
+          <div class="flex items-start gap-3">
+            <div class="shrink-0 rounded-xl w-11 h-11 flex items-center justify-center font-bold" style="background:var(--bg);color:var(--muted);border:1px solid var(--border)">🔒</div>
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-2"><h2 class="font-bold text-lg">${esc(s.title)}</h2><span class="text-xs rounded-full px-2 py-1" style="background:var(--bg);border:1px solid var(--border)">قفل</span></div>
+              <p class="muted mt-2 leading-8">برای باز شدن این قدم، ابتدا <b>قدم ${fa(n-1)}</b> را تکمیل کنید.</p>
+            </div>
+          </div>
+        </article>`;
+      }
+      return `<article class="card" id="lesson-${n}">
+        <div class="flex items-start gap-3">
+          <div class="shrink-0 rounded-xl w-11 h-11 flex items-center justify-center font-bold" style="background:var(--soft);color:var(--primary)">${fa(n)}</div>
+          <div class="min-w-0 flex-1">
+            <div class="flex flex-wrap items-center gap-2"><h2 class="font-bold text-lg">${esc(s.title)}</h2>${complete?'<span class="text-xs rounded-full px-2 py-1 status-green">تکمیل‌شده ✓</span>':'<span class="text-xs rounded-full px-2 py-1" style="background:var(--soft);color:var(--primary)">باز</span>'}</div>
+            <p class="muted mt-2 leading-8">${esc(s.intro)}</p>
+          </div>
+        </div>
+        <h3 class="font-bold mt-4">نکته‌های کاربردی</h3>
+        <ul class="list-disc pr-5 mt-2 space-y-2 leading-7">${s.learn.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
+        <div class="rounded-xl p-4 mt-4" style="background:var(--soft)">
+          <h3 class="font-bold">📝 تمرین عملی</h3>
+          <p class="mt-2 leading-8">${esc(s.exercise)}</p>
+          <p class="text-sm mt-3"><b>هدف این قدم:</b> ${esc(s.goal)}</p>
+        </div>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <button data-act="complete-lesson" data-n="${n}" class="${complete?'btn-ghost':'btn'} text-sm">${complete?'برداشتن علامت تکمیل':'تمرین را انجام دادم؛ تکمیل قدم'}</button>
+          ${n<12 && isLessonUnlocked(n+1, complete ? [...done, n] : done)?`<a href="#lesson-${n+1}" class="btn-ghost text-sm">رفتن به قدم بعدی ←</a>`:''}
+        </div>
+      </article>`;
+    }).join('')}
+    </div>`;
+}
+
+/* ---------- راهنما و پرسش‌های متداول ---------- */
+function renderHelp(){
+  const faqs = [
+    {
+      q:'چگونه اولین درآمد یا هزینه را ثبت کنم؟',
+      a:'به داشبورد بروید و روی دکمه «+ ثبت هزینه» یا «+ ثبت درآمد» بزنید. مبلغ، تاریخ و یک عنوان کوتاه بنویسید. برای هزینه، دسته‌بندی را هم انتخاب کنید. بعد از ذخیره، عدد در داشبورد و فهرست تراکنش‌ها دیده می‌شود.'
+    },
+    {
+      q:'تفاوت درآمد، هزینه و پس‌انداز چیست؟',
+      a:'درآمد پولی است که وارد می‌شود (حقوق، کار آزاد و ...). هزینه پولی است که برای زندگی خرج می‌کنید (خوراک، حمل‌ونقل و ...). پس‌انداز یا ذخیره اضطراری پولی است که کنار می‌گذارید و هنوز خرج نشده؛ نباید آن را به‌عنوان هزینه ثبت کنید.'
+    },
+    {
+      q:'چگونه بودجه ماهانه تعیین کنم؟',
+      a:'در داشبورد، بخش «بودجه ماهانه» را پیدا کنید و روی «تعیین بودجه» بزنید. یک سقف کل برای هزینه‌های آن ماه بنویسید. رنگ‌ها به شما کمک می‌کنند: سبز یعنی هنوز جا دارید، زرد یعنی نزدیک سقف هستید، قرمز یعنی به سقف رسیده‌اید یا از آن گذشته‌اید.'
+    },
+    {
+      q:'اگر درآمدم نامنظم باشد چه کنم؟',
+      a:'بودجه را بر اساس درآمد قابل‌اتکا و متوسط چند ماه اخیر تنظیم کنید، نه بر اساس یک ماه خوب. هزینه‌های ضروری را اول کنار بگذارید و برای ماه‌های کم‌درآمد ذخیره اضطراری نگه دارید.'
+    },
+    {
+      q:'اطلاعاتم کجا ذخیره می‌شوند؟',
+      a:'همه داده‌ها فقط داخل مرورگر همین دستگاه ذخیره می‌شوند و به هیچ سروری فرستاده نمی‌شوند. اگر داده‌های مرورگر را پاک کنید یا از حالت ناشناس استفاده کنید، اطلاعات از بین می‌روند.'
+    },
+    {
+      q:'اگر مرورگر یا دستگاه را عوض کنم چه می‌شود؟',
+      a:'اطلاعات به‌صورت خودکار بین دستگاه‌ها همگام نمی‌شوند. از پایین صفحه «خروجی پشتیبان (JSON)» را بزنید و فایل را ذخیره کنید. روی دستگاه یا مرورگر جدید همان فایل را با «ورود پشتیبان» بارگذاری کنید تا همه داده‌ها برگردند.'
+    },
+    {
+      q:'موجودی اولیه چیست و چرا باید تنظیمش کنم؟',
+      a:'موجودی اولیه مبلغی است که همین الان در کیف پول یا حساب‌تان دارید و هنوز در سایت ثبت نکرده‌اید. با تنظیم آن، عدد «موجودی» در داشبورد به واقعیت نزدیک‌تر می‌شود.'
+    },
+    {
+      q:'چگونه همه داده‌ها را پاک کنم؟',
+      a:'در پایین صفحه روی «پاک‌سازی همه داده‌ها» بزنید و تأیید کنید. این کار برگشت‌ناپذیر است و همه درآمدها، هزینه‌ها، بودجه و پیشرفت آموزشی پاک می‌شود.'
+    },
+    {
+      q:'چرا تاریخ‌ها شمسی نمایش داده می‌شوند؟',
+      a:'سایت برای کاربران فارسی‌زبان طراحی شده و تاریخ‌ها با تقویم شمسی نشان داده می‌شوند. بودجه و گزارش ماهانه هم بر اساس ماه شمسی محاسبه می‌شوند.'
+    },
+    {
+      q:'اگر مبلغ اشتباه وارد کردم چه کنم؟',
+      a:'در داشبورد یا صفحه «تراکنش‌ها»، کنار هر مورد دکمه ✕ وجود دارد. آن را بزنید تا تراکنش حذف شود، سپس دوباره با مبلغ درست ثبت کنید. در صفحه تراکنش‌ها می‌توانید همه موارد را ببینید و فیلتر کنید.'
+    },
+    {
+      q:'آیا همراه مالی مشاوره مالی رسمی است؟',
+      a:'خیر. همراه مالی فقط ابزار ثبت، آموزش و ساخت پرامپت تحلیلی است و مشاوره مالی، حقوقی یا سرمایه‌گذاری رسمی ارائه نمی‌دهد. تصمیم نهایی همیشه با شماست.'
+    },
+    {
+      q:'چگونه از داده‌ها پشتیبان بگیرم؟',
+      a:'در پایین هر صفحه روی «خروجی پشتیبان (JSON)» بزنید تا فایل ذخیره شود. برای بازگردانی، «ورود پشتیبان» را انتخاب کنید و همان فایل را بارگذاری کنید. داده‌های فعلی با محتوای فایل جایگزین می‌شوند.'
+    },
+    {
+      q:'استریک هفتگی و مدال‌ها چطور کار می‌کنند؟',
+      a:'استریک هفتگی فقط تعداد روزهایی از ۷ روز گذشته را نشان می‌دهد که در آن‌ها تراکنشی ثبت کرده‌اید. اگر یک روز فراموش کنید، چیزی صفر نمی‌شود و هیچ جریمه‌ای ندارد. مدال‌ها نشانه‌های ساده‌ای از رفتارهای مفیدند و پس از کسب‌شدن برای شما می‌مانند.'
+    }
+  ];
+
+  $('#app').innerHTML = `
+  <section class="mb-6">
+    <p class="text-sm font-bold" style="color:var(--primary)">پاسخ سوال‌های رایج</p>
+    <h1 class="text-2xl md:text-3xl font-bold mt-2">راهنما و پرسش‌های متداول</h1>
+    <p class="muted mt-3 leading-8">اگر تازه شروع کرده‌اید یا جایی گیر کرده‌اید، اینجا پاسخ‌های کوتاه و روشن پیدا می‌کنید.</p>
+  </section>
+  <div class="card">
+    ${faqs.map((f,i)=>`
+      <div class="faq-item" data-faq="${i}">
+        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
+          <span>${esc(f.q)}</span>
+          <span class="text-lg transition-transform">▼</span>
+        </div>
+        <div class="faq-a">${esc(f.a)}</div>
+      </div>`).join('')}
+  </div>
+  <section class="card mt-6">
+    <h2 class="font-bold mb-2">نکته مهم درباره حریم خصوصی</h2>
+    <p class="muted text-sm leading-7">این سایت بدون ثبت‌نام کار می‌کند. اطلاعات مالی شما روی سرور ذخیره نمی‌شود و فقط در مرورگر همین دستگاه می‌ماند. برای اطمینان بیشتر، از دستگاه شخصی استفاده کنید و داده‌های مرورگر را بی‌دلیل پاک نکنید.</p>
+  </section>`;
+}
+
+/* ---------- دیالوگ‌ها ---------- */
+const dlg = $('#dlg'), form = $('#dlgForm');
+function openDialog(html, onSubmit, opts){
+  opts = opts || {};
+  if(opts.wide) dlg.classList.add('wide');
+  else dlg.classList.remove('wide');
+  let body = html;
+  if(body.indexOf('<h3') !== -1 && body.indexOf('id="dlgTitle"') === -1){
+    body = body.replace('<h3', '<h3 id="dlgTitle"');
+  }
+  form.innerHTML = body + `<div class="flex gap-2 pt-2"><button class="btn flex-1" value="ok">ذخیره</button><button type="button" class="btn-ghost" id="cancel">انصراف</button></div>`;
+  form.onsubmit = async e => {
+    e.preventDefault();
+    const result = await onSubmit(new FormData(form));
+    if(result === false) return;
+    dlg.close();
+    render();
+  };
+  $('#cancel').onclick = () => dlg.close();
+  dlg.showModal();
+  bindMoneyInputs(form);
+  bindJalaliDate(form);
+}
+const field = (label, inner) => `<label class="block text-sm">${label}<div class="mt-1">${inner}</div></label>`;
+const num = (name, val='') => moneyInput(name, val);
+
+function parseAmount(fd, name){
+  const v = parseMoneyStr(fd.get(name));
+  if(v === null || v < 0) return null;
+  return v;
+}
+
+/* ---------- مشاوره با هوش مصنوعی: ساخت پرامپت ---------- */
+/* دستورالعمل کامل تحلیل که در ابتدای هر پرامپت خروجی قرار می‌گیرد */
+const ADVISOR_INSTRUCTIONS = `نقش و مأموریت
+تو دستیار هوشمند تحلیل و برنامه‌ریزی مالی در وب‌سایت «همراه مالی» هستی. مأموریت تو کمک به کاربران برای شناخت وضعیت مالی، طبقه‌بندی درآمد و هزینه، شناسایی مخارج قابل مدیریت، و ارائه پیشنهادهای کاربردی جهت افزایش نظم و امنیت مالی است.
+
+تأکید مهم و سلب مسئولیت حقوقی:
+سامانه «همراه مالی» و این موتور هوشمند، هیچ‌گونه مشاوره مالی، حقوقی، تجاری یا سرمایه‌گذاری تخصصی و رسمی ارائه نمی‌دهند. تمام خروجی‌ها، محاسبات و تحلیل‌ها صرفاً جنبه آموزشی، آماری و پیشنهادی داشته و به عنوان ابزار کمکی برای تصمیم‌گیری شخص کاربر طراحی شده‌اند. مسؤولیت نهایی هرگونه تصمیم یا اقدام مالی مستقیماً بر عهده کاربر است.
+
+تو باید مانند یک ابزار تحلیلی دقیق، داده‌های واقعی کاربر را پردازش کرده و مانند یک مربی مالی، سناریوهای پیشنهادی، قابل اندازه‌گیری و قابل اجرا ارائه دهی. هدف، ارائه توصیه‌های قطعی یا متون انگیزشی نیست؛ بلکه تبدیل داده‌ها به یک برنامه کاربردی و پیشنهادی است.
+
+۱. اصول اساسی تحلیل و پیشنهاد
+۱. تمام تحلیل‌ها و پیشنهادها را صرفاً بر اساس اطلاعات واقعی ارائه‌شده از سوی کاربر و داده‌های ثبت‌شده انجام بده.
+۲. هیچ مبلغ، تراکنش، درآمد، هزینه، بدهی، دارایی یا هدفی را فرض یا جعل نکن.
+۳. میان داده‌های واقعی، محاسبات و سناریوهای پیشنهادی تفاوت روشن قائل شو.
+۴. اگر داده‌ها ناقص یا ناکافی هستند، محدودیت‌ها را شفاف اعلام کن و در صورت لزوم سؤالات تکمیلی بپرس.
+۵. از سرزنش، قضاوت یا تحقیر کاربر خودداری کن. شرایط مالی را مسئله‌ای برای بررسی و بهینه‌سازی بدان.
+۶. پیشنهادها باید با شرایط، هزینه‌های ضروری و توان واقعی کاربر سازگار باشند.
+۷. از پیشنهاد درصد ثابت و یکسان پس‌انداز برای همه کاربران خودداری کن.
+۸. اگر درآمد برای پوشش هزینه‌های ضروری کافی نیست، تمرکز را بر مدیریت کسری و بررسی راه‌کارهای پیشنهادی کنترل هزینه بگذار؛ نه پیشنهاد غیرواقع‌بینانه پس‌انداز.
+۹. از ارائه قطعیت کاذب، پیش‌بینی تضمینی و ادعاهای فاقد پشتوانه خودداری کن.
+
+۲. شناخت شرایط اقتصادی ایران
+در تنظیم پیشنهادها، واقعیت‌های اقتصادی ایران (از جمله تورم، تغییرات قیمت کالاها و خدمات، و اهمیت نقدینگی در شرایط اضطراری) را مد نظر قرار بده، اما بدون منبع معتبر و تاریخ مشخص، هیچ عدد و رقم ساختگی برای نرخ تورم یا قیمت دارایی‌ها اعلام نکن.
+
+۳. اطلاعات ورودی
+مجموعه داده‌های ورودی شامل تنظیمات، درآمدها، هزینه‌ها، بودجه‌ها، اهداف پس‌انداز، صندوق اضطراری و سایر اطلاعات تکمیلی ثبت‌شده در سامانه خواهد بود. عدم وجود هر بخش را به معنی «نامشخص» تلقی کن، نه عدد صفر.
+
+۴. روش تحلیل و استخراج پیشنهادها
+- مرحله اول (کیفیت داده‌ها): بررسی بازه زمانی و سنجش کامل بودن اطلاعات.
+- مرحله دوم (جریان نقدی): محاسبه مجموع درآمد، هزینه، مانده جریان نقدی، و تفکیک هزینه‌های ضروری و غیرضروری بر اساس داده‌های ثبت‌شده.
+- مرحله سوم (تشخیص مسائل): بررسی انحراف از بودجه، هزینه‌های غیرعادی یا کمبود ذخیره اضطراری.
+- مرحله چهارم (اولویت‌بندی): پیشنهاد حداکثر ۳ اقدام اصلی جهت بررسی بر اساس اهمیت و سهولت اجرا.
+- مرحله پنجم (ارائه سناریوی پیشنهادی): شفاف‌سازی اقدام پیشنهادی، علت پیشنهاد، و معیار سنجش آن.
+
+۵. مدیریت هزینه و بررسی امکان پس‌انداز
+- بررسی هزینه‌های قابل کنترل بر اساس برچسب‌های ثبت‌شده توسط کاربر.
+- خودداری از پیشنهاد کاهش شدید در هزینه‌های ضروری (خوراک، مسکن، درمان).
+- ارائه فرمول‌های ساده محاسبه پس‌انداز ماهانه برای اهداف زمان‌دار (فقط در صورت مشخص بودن تاریخ و اعداد).
+
+۶. صندوق اضطراری و مدیریت ریسک
+- ارزیابی میزان پیشرفت صندوق اضطراری بر اساس داده‌های موجود.
+- از ارائه هرگونه توصیه قطعی خرید یا فروش دارایی‌ها (طلا، ارز، سهام و غیره) خودداری کن. پیشنهادها صرفاً بر سنجش تناسب ریسک و حفظ نقدینگی تمرکز دارند.
+
+۷. قالب استاندارد خروجی
+پاسخ را به فارسی روان، کاملاً رسمی، محترمانه و با ساختار زیر ارائه کن:
+
+[بیانیه سلب مسئولیت]
+در ابتدای پاسخ حتماً قید شود: «توجه: اطلاعات و تحلیل‌های زیر صرفاً جنبه آموزشی و ابزار کمکی داشته و به عنوان مشاوره مالی یا سرمایه‌گذاری رسمی تلقی نمی‌شوند. تصمیم‌گیری نهایی بر عهده شماست.»
+
+۱. خلاصه وضعیت کلی داده‌ها
+۲. شاخص‌ها و محاسبات کلیدی (درآمد، هزینه، مانده و دوره زمانی مربوطه)
+۳. نکات مثبت و رفتارهای مالی مطلوب
+۴. مجاری قابل بررسی و بهینه‌سازی (حداکثر ۳ مورد)
+۵. اقدامات پیشنهادی جهت بررسی و اقدام (همراه با اولویت و معیار سنجش)
+۶. وضعیت اهداف پس‌انداز و صندوق اضطراری (در صورت وجود داده)
+۷. جمع‌بندی و گام‌های بعدی پیشنهادی`;
+
+function advisorPeriodLabel(){
+  if(advisorPeriod === '3m') return 'سه ماه شمسی اخیر';
+  if(advisorPeriod === 'all') return 'تمام دوره‌های ثبت‌شده';
+  return jMonthName(todayISO()) + ' (ماه شمسی جاری)';
+}
+function filterByAdvisorPeriod(list){
+  if(advisorPeriod === 'all') return list.slice();
+  if(advisorPeriod === '3m'){
+    const keys = new Set(jalaliMonthKeysBack(3));
+    return list.filter(x => keys.has(jMonthKey(x.date)));
+  }
+  const mk = jMonthKey(todayISO());
+  return list.filter(x => jMonthKey(x.date) === mk);
+}
+function buildAdvisorPrompt(){
+  const period = advisorPeriodLabel();
+  const mInc = filterByAdvisorPeriod(state.incomes);
+  const mExp = filterByAdvisorPeriod(state.expenses);
+  const incSum = sum(mInc), expSum = sum(mExp), net = incSum - expSum;
+  const unknown = 'نامشخص (داده‌ای ثبت نشده)';
+  const mk = jMonthKey(todayISO());
+
+  const byCat = {};
+  mExp.forEach(x=>{ const n = catName(x.categoryId); byCat[n] = (byCat[n]||0) + (Number(x.amount)||0); });
+  const catLines = Object.entries(byCat).sort((a,b)=>b[1]-a[1])
+    .map(([n,v])=>`  • ${n}: ${money(v)} (${fa(expSum ? v/expSum*100 : 0)}٪ از هزینه‌ها)`);
+  const essList = mExp.filter(x=>x.isEssential!==false), optList = mExp.filter(x=>x.isEssential===false);
+  const worthLines = Object.entries(WORTH).map(([k,v])=>{
+    const L = mExp.filter(x=>x.worth===k);
+    return L.length ? `  • «${v[1]}»: ${fa(L.length)} خرید، ${money(sum(L))}` : '';
+  }).filter(Boolean);
+
+  const budget = state.budgets.find(b=>b.period==='monthly' && jMonthKey(b.startDate)===mk);
+  let budgetLine = '  • بودجه ماهانه (ماه جاری): ' + unknown;
+  if(budget && Number(budget.totalBudget)>0){
+    const lim = Number(budget.totalBudget);
+    const monthExp = sum(state.expenses.filter(x=>jMonthKey(x.date)===mk));
+    const left = lim - monthExp;
+    budgetLine = `  • بودجه ماهانه (ماه جاری): سقف ${money(lim)}، میزان مصرف ${fa(monthExp/lim*100)}٪ ` +
+      (left>=0 ? `(باقی‌مانده ${money(left)})` : `(${money(-left)} بیشتر از سقف)`);
+  }
+  const ef = state.emergencyFund || {};
+  const efT = Number(ef.targetAmount)||0, efC = Number(ef.currentAmount)||0;
+  const efLine = efT>0
+    ? `  • صندوق اضطراری: هدف ${money(efT)}، موجودی فعلی ${money(efC)}، پیشرفت ${fa(Math.min(100, efC/efT*100))}٪`
+    : `  • صندوق اضطراری: هدفی تعیین نشده${efC>0?` (موجودی فعلی ${money(efC)})`:''}`;
+  const goals = (state.savingsGoals||[]).map(g=>{
+    const t = Number(g.targetAmount)||0, c = Number(g.currentAmount)||0;
+    return `    - ${esc(g.name||'هدف بدون نام')}: ${money(c)} از ${money(t)}${t>0?` (${fa(Math.min(100,c/t*100))}٪)`:''}${g.targetDate?`، تاریخ هدف: ${jDate(g.targetDate)}`:''}`;
+  });
+  const initBal = Number(state.settings.initialBalance)||0;
+
+  const D = [];
+  D.push('داده‌های مالی من (استخراج‌شده از سامانه «همراه مالی»):');
+  D.push(`- واحد پول: ${state.settings.currency}`);
+  D.push(`- بازه زمانی داده‌ها: ${period}`);
+  D.push(`- تعداد تراکنش‌های ثبت‌شده در این بازه: ${fa(mInc.length)} درآمد و ${fa(mExp.length)} هزینه`);
+  D.push(`- موجودی اولیه تنظیم‌شده: ${initBal>0 ? money(initBal) : unknown}`);
+  D.push(`- مجموع درآمدها: ${incSum ? money(incSum) : unknown}`);
+  D.push(`- مجموع هزینه‌ها: ${expSum ? money(expSum) : unknown}`);
+  D.push(`- مانده جریان نقدی بازه: ${(incSum||expSum) ? (net<0?'−':'')+money(Math.abs(net))+(net<0?' (هزینه‌ها بیشتر از درآمد)':'') : unknown}`);
+  D.push(`- هزینه‌های ضروری: ${mExp.length ? money(sum(essList)) : unknown}`);
+  D.push(`- هزینه‌های غیرضروری (بر اساس برچسب کاربر): ${mExp.length ? money(sum(optList)) : unknown}`);
+  D.push('- تفکیک دسته‌بندی‌ها:');
+  D.push(...(catLines.length ? catLines : ['  • ' + unknown]));
+  if(worthLines.length){
+    D.push('- برچسب «ارزشش را داشت؟» که کاربر برای خریدها ثبت کرده (اختیاری):');
+    D.push(...worthLines);
+  }
+  D.push('- وضعیت بودجه و صندوق اضطراری:');
+  D.push(budgetLine);
+  D.push(efLine);
+  D.push(...(goals.length ? ['  • اهداف پس‌انداز:', ...goals] : ['  • اهداف پس‌انداز: ' + unknown]));
+  const debtLines = (state.debts||[]).map(d => `    - ${d.name}: مانده ${money(d.remaining)}${d.installment?`، قسط ${money(d.installment)}`:''}${d.dueDay?`، روز سررسید ${d.dueDay}`:''}`);
+  D.push(...(debtLines.length ? ['  • بدهی‌ها و اقساط:', ...debtLines] : ['  • بدهی‌ها: ' + unknown]));
+
+  return ADVISOR_INSTRUCTIONS + '\n\n' + '────────────────────' + '\n\n'
+    + 'لطفاً بر اساس دستورالعمل و قالب استاندارد خروجی بالا، داده‌های زیر را تحلیل کن و صرفاً پیشنهادها، سناریوها و راهکارهای قابل بررسی ارائه بده:\n\n'
+    + D.join('\n');
+}
+
+function downloadTextFile(content, filename, mime){
+  const blob = new Blob([content], {type: mime || 'text/plain;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+function downloadAdvisorTxt(){
+  const ta = $('#advisorText');
+  const content = ta ? ta.value : buildAdvisorPrompt();
+  downloadTextFile(content, 'hamrah-mali-prompt-' + todayISO() + '.txt', 'text/plain;charset=utf-8');
+  const st = $('#advisorStatus');
+  if(st) st.textContent = '✓ فایل TXT دانلود شد.';
+  showToast('فایل TXT ذخیره شد.');
+}
+function downloadAdvisorPdf(){
+  const ta = $('#advisorText');
+  const content = ta ? ta.value : buildAdvisorPrompt();
+  const w = window.open('', '_blank');
+  if(!w){
+    showToast('پاپ‌آپ مسدود شد. از دکمه TXT استفاده کن یا پاپ‌آپ را اجازه بده.');
+    return;
+  }
+  const safe = String(content)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const doc = w.document;
+  doc.open();
+  doc.write('<!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="utf-8">');
+  doc.write('<title>پرامپت همراه مالی</title>');
+  doc.write('<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">');
+  doc.write('<style>body{font-family:Vazirmatn,Tahoma,sans-serif;padding:24px;line-height:1.9;color:#14211d;max-width:800px;margin:0 auto;white-space:pre-wrap;word-wrap:break-word;font-size:12px}h1{font-size:18px;margin-bottom:8px}.hint{color:#5d6d67;font-size:12px;margin-bottom:16px}@media print{body{padding:12px}.hint{display:none}}</style>');
+  doc.write('</head><body>');
+  doc.write('<h1>پرامپت تحلیل مالی — همراه مالی</h1>');
+  doc.write('<p class="hint">برای ذخیره به‌صورت PDF: در پنجره چاپ، مقصد را Save as PDF انتخاب کنید.</p>');
+  doc.write('<div>'+safe+'</div>');
+  doc.write('</body></html>');
+  doc.close();
+  setTimeout(() => { try{ w.print(); }catch(e){} }, 400);
+  const st = $('#advisorStatus');
+  if(st) st.textContent = 'پنجره چاپ باز شد؛ مقصد را Save as PDF بگذار.';
+}
+
+function advisorDialog(){
+  if(!state.incomes.length && !state.expenses.length){
+    showToast('هنوز تراکنشی ثبت نشده. اول چند درآمد یا هزینه وارد کن، بعد پرامپت بساز.');
+    return;
+  }
+  const text = buildAdvisorPrompt();
+  dlg.classList.add('wide');
+  form.onsubmit = e => e.preventDefault();
+  form.innerHTML = `<h3 class="font-bold text-lg">🤖 پرامپت تحلیل و پیشنهاد مالی</h3>
+    <p class="muted text-sm leading-7">دستورالعمل تحلیل، سلب مسئولیت و داده‌های بازهٔ انتخابی — بدون عنوان تراکنش‌ها. قبل از کپی می‌توانی متن را ویرایش کنی.</p>
+    <div class="flex flex-wrap gap-2 mb-2">
+      <span class="text-sm muted self-center">بازه:</span>
+      ${[['current','این ماه'],['3m','سه ماه اخیر'],['all','همه']].map(([id,lab])=>
+        `<button type="button" class="${advisorPeriod===id?'btn':'btn-ghost'} text-sm" data-act="advisor-period" data-period="${id}">${lab}</button>`
+      ).join('')}
+    </div>
+    <textarea id="advisorText" class="inp text-sm leading-7" rows="14" dir="rtl" aria-label="متن پرامپت">${esc(text)}</textarea>
+    <p id="advisorStatus" class="text-sm min-h-[1.5rem]" role="status" aria-live="polite" style="color:var(--primary)"></p>
+    <div class="flex flex-wrap gap-2">
+      <button type="button" class="btn flex-1" data-act="advisor-copy">📋 کپی پرامپت</button>
+      <button type="button" class="btn-ghost text-sm" data-act="advisor-txt">⬇ TXT</button>
+      <button type="button" class="btn-ghost text-sm" data-act="advisor-pdf">⬇ PDF</button>
+      <button type="button" class="btn-ghost" data-act="advisor-help" aria-expanded="false">❓ راهنما</button>
+      <button type="button" class="btn-ghost" data-act="advisor-close">بستن</button>
+    </div>
+    <div id="advisorHelp" class="hidden rounded-xl p-3 text-sm leading-7" style="background:var(--soft)">
+      <b>چگونه استفاده کنم؟</b>
+      <ol class="list-decimal pr-5 mt-2 space-y-1">
+        <li>بازهٔ زمانی را انتخاب کن (این ماه / سه ماه / همه).</li>
+        <li>روی «کپی پرامپت» بزن، یا فایل TXT / PDF بگیر.</li>
+        <li><a class="underline" style="color:var(--primary)" href="https://chatgpt.com" target="_blank" rel="noopener noreferrer">ChatGPT</a> را باز کن.</li>
+        <li>متن را در کادر گفتگو بچسبان (Paste) و ارسال کن.</li>
+        <li>پاسخ را بخوان؛ مثلاً بپرس «یک برنامه هفتگی ساده برای ماه بعد بنویس».</li>
+      </ol>
+      <p class="mt-2 muted">حریم خصوصی: این برنامه چیزی به سرور نمی‌فرستد؛ متن فقط وقتی به ChatGPT می‌رسد که خودت بچسبانی. اگر عددی را نمی‌خواهی به اشتراک بگذاری، قبل از کپی حذفش کن. پاسخ فقط پیشنهادی قابل‌بررسی است، نه مشاوره رسمی.</p>
+    </div>`;
+  dlg.showModal();
+  const ta0 = $('#advisorText');
+  if(ta0){ try{ ta0.focus(); ta0.select(); }catch(e){} }
+}
+dlg.addEventListener('close', () => dlg.classList.remove('wide'));
+
+async function copyAdvisor(){
+  const ta = $('#advisorText'), st = $('#advisorStatus');
+  if(!ta) return;
+  const say = m => { if(st) st.textContent = m; };
+  try{ await navigator.clipboard.writeText(ta.value); say('✓ کپی شد — در ChatGPT بچسبان (Paste).'); return; }catch(e){}
+  try{ ta.focus(); ta.select(); if(document.execCommand('copy')){ say('✓ کپی شد — در ChatGPT بچسبان (Paste).'); return; } }catch(e){}
+  ta.focus(); ta.select(); say('انتخاب شد؛ Ctrl+C یا انگشت را نگه دار. اگر نشد از TXT استفاده کن.');
+}
+
+function worthFieldSelected(selected){
+  const sel = selected || '';
+  return `<fieldset class="mt-2"><legend class="text-sm">ارزشش را داشت؟ <span class="muted">(اختیاری)</span></legend>
+  <div class="flex flex-wrap gap-2 mt-1">
+    <label class="pill"><input type="radio" name="worth" value="" ${!sel?'checked':''}><span>رد می‌کنم</span></label>
+    ${Object.entries(WORTH).map(([k,v])=>`<label class="pill"><input type="radio" name="worth" value="${k}" ${sel===k?'checked':''}><span>${v[0]} ${v[1]}</span></label>`).join('')}
+  </div></fieldset>`;
+}
+
+function txDialog(kind, editItem){
+  const cats = state.categories.filter(c=>c.type==='expense'&&c.isActive);
+  const isEdit = !!editItem;
+  const amountVal = isEdit ? editItem.amount : '';
+  const dateVal = isEdit ? editItem.date : todayISO();
+  const titleVal = isEdit ? (kind==='expense' ? editItem.title : editItem.source) : '';
+  openDialog(
+    `<h3 class="font-bold text-lg">${isEdit ? (kind==='expense'?'ویرایش هزینه':'ویرایش درآمد') : (kind==='expense'?'ثبت هزینه':'ثبت درآمد')}</h3>`
+    + field('مبلغ ('+state.settings.currency+')', num('amount', amountVal))
+    + field('تاریخ (شمسی)', jalaliDateField(dateVal))
+    + field(kind==='expense'?'عنوان':'منبع درآمد', `<input class="inp" name="title" required maxlength="80" value="${esc(titleVal)}" placeholder="${kind==='expense'?'مثلاً ناهار یا بنزین':'مثلاً حقوق یا پروژه'}">`)
+    + (kind==='expense'
+      ? field('دسته‌بندی', `<select class="inp" name="categoryId">${cats.map(c=>`<option value="${c.id}" ${isEdit&&editItem.categoryId===c.id?'selected':''}>${esc(c.name)}</option>`).join('')}</select>`)
+        + `<label class="flex items-center gap-2 text-sm mt-2"><input type="checkbox" name="isEssential" ${!isEdit||editItem.isEssential!==false?'checked':''}> این هزینه ضروری است</label>`
+        + worthFieldSelected(isEdit ? editItem.worth : '')
+      : `<label class="flex items-center gap-2 text-sm mt-2"><input type="checkbox" name="isRecurring" ${isEdit&&editItem.isRecurring?'checked':''}> این درآمد تکرارشونده است</label>`),
+    fd => {
+      const amount = parseAmount(fd, 'amount');
+      if(amount === null || amount === 0){
+        showToast('لطفاً مبلغی بزرگ‌تر از صفر وارد کنید.');
+        return false;
+      }
+      const date = readJalaliDate(fd);
+      const title = (fd.get('title')||'').trim();
+      if(!title){
+        showToast('لطفاً عنوان یا منبع را بنویسید.');
+        return false;
+      }
+      if(!date){
+        showToast('لطفاً تاریخ شمسی معتبر انتخاب کنید.');
+        return false;
+      }
+      if(kind==='expense'){
+        const row = {
+          id: isEdit ? editItem.id : uid(),
+          amount,
+          date,
+          categoryId: fd.get('categoryId'),
+          title,
+          paymentMethod: isEdit ? (editItem.paymentMethod||'') : '',
+          isEssential: fd.has('isEssential'),
+          worth: ['yes','ok','no'].includes(fd.get('worth')) ? fd.get('worth') : ''
+        };
+        if(isEdit){
+          const i = state.expenses.findIndex(x => x.id === editItem.id);
+          if(i >= 0) state.expenses[i] = row;
+        } else state.expenses.push(row);
+        showToast(isEdit ? 'هزینه ویرایش شد.' : 'هزینه ثبت شد.');
+      } else {
+        const row = {
+          id: isEdit ? editItem.id : uid(),
+          amount,
+          date,
+          source: title,
+          description: isEdit ? (editItem.description||'') : '',
+          isRecurring: fd.has('isRecurring')
+        };
+        if(isEdit){
+          const i = state.incomes.findIndex(x => x.id === editItem.id);
+          if(i >= 0) state.incomes[i] = row;
+        } else state.incomes.push(row);
+        showToast(isEdit ? 'درآمد ویرایش شد.' : 'درآمد ثبت شد.');
+      }
+      save();
+      closeFab();
+    }
+  );
+}
+
+function goalDialog(editItem){
+  const isEdit = !!editItem;
+  const dateIso = isEdit && editItem.targetDate ? editItem.targetDate : '';
+  openDialog(
+    `<h3 class="font-bold text-lg">${isEdit?'ویرایش هدف پس‌انداز':'هدف پس‌انداز جدید'}</h3>
+     <p class="muted text-sm leading-6">مثلاً خرید لپ‌تاپ، سفر، یا پیش‌پرداخت اجاره. مبلغ هدف و موجودی فعلی را وارد کن.</p>`
+    + field('نام هدف', `<input class="inp" name="name" required maxlength="60" value="${esc(isEdit?editItem.name||'':'')}" placeholder="مثلاً سفر نوروزی">`)
+    + field('مبلغ هدف', num('target', isEdit?editItem.targetAmount:''))
+    + field('مبلغ فعلی', num('current', isEdit?editItem.currentAmount||0:0))
+    + field('تاریخ هدف (اختیاری)', jalaliDateField(dateIso, {optional:true, hint:'اگر تاریخ مشخصی نداری، «بدون تاریخ» را بزن.'})),
+    fd => {
+      const name = (fd.get('name')||'').trim();
+      const target = parseAmount(fd, 'target');
+      const current = parseAmount(fd, 'current');
+      if(!name){ showToast('نام هدف را بنویس.'); return false; }
+      if(target === null || target <= 0){ showToast('مبلغ هدف باید بزرگ‌تر از صفر باشد.'); return false; }
+      if(current === null || current < 0){ showToast('مبلغ فعلی نامعتبر است.'); return false; }
+      const date = readJalaliDate(fd);
+      const row = {
+        id: isEdit ? editItem.id : uid(),
+        name,
+        targetAmount: target,
+        currentAmount: current,
+        targetDate: date || ''
+      };
+      if(!state.savingsGoals) state.savingsGoals = [];
+      if(isEdit){
+        const i = state.savingsGoals.findIndex(g => g.id === editItem.id);
+        if(i >= 0) state.savingsGoals[i] = row;
+      } else state.savingsGoals.push(row);
+      save();
+      showToast(isEdit ? 'هدف به‌روز شد.' : 'هدف پس‌انداز اضافه شد.');
+    }
+  );
+}
+function goalAddAmountDialog(goal){
+  openDialog(
+    `<h3 class="font-bold text-lg">افزودن به «${esc(goal.name||'هدف')}»</h3>
+     <p class="muted text-sm leading-6">مبلغی که الان کنار می‌گذاری به موجودی فعلی هدف اضافه می‌شود. موجودی فعلی: ${money(goal.currentAmount||0)}</p>`
+    + field('مبلغ افزودنی', num('add','')),
+    fd => {
+      const add = parseAmount(fd, 'add');
+      if(add === null || add <= 0){ showToast('مبلغ معتبر بزرگ‌تر از صفر وارد کن.'); return false; }
+      const i = (state.savingsGoals||[]).findIndex(g => g.id === goal.id);
+      if(i < 0) return false;
+      state.savingsGoals[i].currentAmount = (Number(state.savingsGoals[i].currentAmount)||0) + add;
+      save();
+      showToast('مبلغ به هدف اضافه شد.');
+    }
+  );
+}
+
+function prevMonthBudget(){
+  const keys = jalaliMonthKeysBack(2);
+  if(keys.length < 2) return null;
+  const prevKey = keys[1];
+  return state.budgets.find(b => b.period==='monthly' && jMonthKey(b.startDate)===prevKey) || null;
+}
+function budgetDialog(){
+  const today = todayISO(), mk = jMonthKey(today);
+  const cur = state.budgets.find(b=>b.period==='monthly' && jMonthKey(b.startDate)===mk);
+  const prev = prevMonthBudget();
+  const defaultTotal = cur ? cur.totalBudget : (prev ? prev.totalBudget : '');
+  const prevAlloc = (cur && cur.allocations) || (prev && prev.allocations) || [];
+  const expCats = state.categories.filter(c => c.type==='expense' && c.isActive);
+  const allocMap = {};
+  prevAlloc.forEach(a => { if(a && a.categoryId) allocMap[a.categoryId] = a.amount; });
+  const allocHtml = expCats.length ? `<div class="mt-3"><p class="text-sm font-bold mb-2">تخصیص به دسته‌ها <span class="muted font-normal">(اختیاری)</span></p>
+    <p class="muted text-xs mb-2">اگر خالی بماند فقط سقف کل اعمال می‌شود. جمع تخصیص‌ها می‌تواند کمتر از سقف کل باشد.</p>
+    ${expCats.map(c => {
+      const val = allocMap[c.id];
+      return `<div class="alloc-row"><span class="text-sm truncate">${esc(c.name)}</span>${moneyInput('alloc_'+c.id, val!=null?val:'')}</div>`;
+    }).join('')}</div>` : '';
+  openDialog(
+    `<h3 class="font-bold text-lg">بودجه ماهانه ${jMonthName(today)}</h3>
+     <p class="muted text-sm leading-6">سقف کل و در صورت تمایل سقف هر دسته. رنگ‌ها: سبز کمتر از ۸۰٪، زرد ۸۰–۱۰۰٪، قرمز از ۱۰۰٪ به بالا.${prev && !cur ? ' مقادیر ماه قبل به‌عنوان پیشنهاد آمده است.' : ''}</p>`
+    + field('سقف کل هزینه ('+state.settings.currency+')', num('total', defaultTotal))
+    + (prev ? `<button type="button" class="btn-ghost text-sm" data-act="budget-copy-prev" data-amount="${Number(prev.totalBudget)||0}">کپی سقف ماه قبل (${money(prev.totalBudget)})</button>` : '')
+    + allocHtml,
+    fd => {
+      const total = parseAmount(fd, 'total');
+      if(total === null || total <= 0){
+        showToast('سقف بودجه باید بیشتر از صفر باشد.');
+        return false;
+      }
+      const allocations = [];
+      expCats.forEach(c => {
+        const raw = fd.get('alloc_'+c.id);
+        if(raw === null || String(raw).trim() === '') return;
+        const v = parseMoneyStr(raw);
+        if(v !== null && v > 0) allocations.push({ categoryId: c.id, amount: v });
+      });
+      const sumAlloc = allocations.reduce((s,a)=>s+a.amount, 0);
+      if(sumAlloc > total * 1.001){
+        showToast('جمع تخصیص دسته‌ها از سقف کل بیشتر است.');
+        return false;
+      }
+      if(cur){
+        cur.totalBudget = total;
+        cur.allocations = allocations;
+        cur.endDate = endOfJalaliMonthISO(today);
+      } else {
+        state.budgets.push({
+          id: uid(),
+          period: 'monthly',
+          startDate: today,
+          endDate: endOfJalaliMonthISO(today),
+          totalBudget: total,
+          allocations
+        });
+      }
+      save();
+      showToast('بودجه ماهانه ذخیره شد.');
+    },
+    {wide: true}
+  );
+}
+
+function debtDialog(editItem){
+  const isEdit = !!editItem;
+  openDialog(
+    `<h3 class="font-bold text-lg">${isEdit?'ویرایش بدهی':'بدهی یا قسط'}</h3>
+     <p class="muted text-sm leading-6">مانده، قسط ماهانه و روز سررسید را ثبت کن تا در داشبورد و پرامپت دیده شود.</p>`
+    + field('نام', `<input class="inp" name="name" required maxlength="60" value="${esc(isEdit?editItem.name||'':'')}" placeholder="مثلاً وام مسکن">`)
+    + field('مانده بدهی', num('remaining', isEdit?editItem.remaining:''))
+    + field('قسط ماهانه (اختیاری)', num('installment', isEdit?editItem.installment||0:0))
+    + field('روز سررسید در ماه (۱–۳۱، اختیاری)', `<input class="inp" name="dueDay" type="number" min="0" max="31" value="${isEdit?editItem.dueDay||'':''}">`),
+    fd => {
+      const name = (fd.get('name')||'').trim();
+      const remaining = parseAmount(fd, 'remaining');
+      const installment = parseAmount(fd, 'installment');
+      const dueDay = Math.min(31, Math.max(0, parseInt(fd.get('dueDay')||'0',10)||0));
+      if(!name){ showToast('نام بدهی را بنویس.'); return false; }
+      if(remaining === null){ showToast('مانده نامعتبر است.'); return false; }
+      if(!state.debts) state.debts = [];
+      const row = { id: isEdit?editItem.id:uid(), name, remaining, installment: installment||0, dueDay };
+      if(isEdit){
+        const i = state.debts.findIndex(x=>x.id===editItem.id);
+        if(i>=0) state.debts[i]=row;
+      } else state.debts.push(row);
+      save();
+      showToast(isEdit?'بدهی به‌روز شد.':'بدهی ثبت شد.');
+    }
+  );
+}
+function catAddDialog(){
+  openDialog(
+    `<h3 class="font-bold text-lg">دستهٔ سفارشی</h3>`
+    + field('نام دسته', `<input class="inp" name="name" required maxlength="30" placeholder="مثلاً حیوانات خانگی">`)
+    + field('نوع', `<select class="inp" name="type"><option value="expense">هزینه</option><option value="income">درآمد</option></select>`),
+    fd => {
+      const name = (fd.get('name')||'').trim();
+      const type = fd.get('type')==='income'?'income':'expense';
+      if(!name){ showToast('نام دسته را بنویس.'); return false; }
+      if(state.categories.some(c=>c.name===name && c.type===type)){
+        showToast('این دسته از قبل هست.'); return false;
+      }
+      state.categories.push({id:uid(), name, type, isActive:true, isCustom:true});
+      save();
+      showToast('دسته اضافه شد.');
+    }
+  );
+}
+
+function efDialog(){
+  const ef = state.emergencyFund;
+  openDialog(
+    `<h3 class="font-bold text-lg">ذخیره اضطراری</h3>
+     <p class="muted text-sm leading-6">هدف و مبلغ فعلی صندوق اضطراری را وارد کنید. این مبلغ جدا از هزینه‌های روزمره حساب می‌شود.</p>`
+    + field('مبلغ هدف', num('target', ef.targetAmount||''))
+    + field('مبلغ فعلی', num('current', ef.currentAmount||0)),
+    fd => {
+      const target = parseAmount(fd, 'target');
+      const current = parseAmount(fd, 'current');
+      if(target === null || current === null){
+        showToast('لطفاً عدد معتبر و غیرمنفی وارد کنید.');
+        return false;
+      }
+      if(target === 0 && current === 0){
+        showToast('حداقل یکی از دو مبلغ را بزرگ‌تر از صفر وارد کنید.');
+        return false;
+      }
+      state.emergencyFund = { targetAmount: target, currentAmount: current };
+      save();
+      showToast('ذخیره اضطراری به‌روز شد.');
+    }
+  );
+}
+
+function initialBalanceDialog(){
+  openDialog(
+    `<h3 class="font-bold text-lg">موجودی اولیه</h3>
+     <p class="muted text-sm leading-6">مبلغی که همین الان دارید و هنوز در سایت ثبت نشده (مثلاً موجودی کیف پول یا حساب). این عدد به موجودی داشبورد اضافه می‌شود.</p>`
+    + field('موجودی اولیه ('+state.settings.currency+')', num('bal', state.settings.initialBalance||0)),
+    fd => {
+      const bal = parseAmount(fd, 'bal');
+      if(bal === null){
+        showToast('لطفاً عدد معتبر و غیرمنفی وارد کنید.');
+        return false;
+      }
+      state.settings.initialBalance = bal;
+      save();
+      showToast('موجودی اولیه ذخیره شد.');
+    }
+  );
+}
+
+/* ---------- رویدادها و مسیریابی ---------- */
+document.addEventListener('click', e => {
+  const faqQ = e.target.closest('.faq-q');
+  if(faqQ){
+    const item = faqQ.closest('.faq-item');
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el=>el.classList.remove('open'));
+    if(!open) item.classList.add('open');
+    faqQ.setAttribute('aria-expanded', String(!open));
+    return;
+  }
+
+  if(e.target.closest('#fabBtn')){
+    fabOpen = !fabOpen;
+    const m = $('#fabMenu');
+    if(m) m.classList.toggle('open', fabOpen);
+    return;
+  }
+  if(fabOpen && !e.target.closest('#fabMenu') && !e.target.closest('#fabBtn')) closeFab();
+
+  /* حذف را قبل از ویرایش ردیف بررسی کن */
+  const delBtn = e.target.closest('[data-act="del"]');
+  if(delBtn){
+    e.preventDefault();
+    if(!confirm('این تراکنش حذف شود؟')) return;
+    const k = delBtn.dataset.kind==='income' ? 'incomes' : 'expenses';
+    state[k] = state[k].filter(x => x.id !== delBtn.dataset.id);
+    save();
+    showToast('تراکنش حذف شد.');
+    render();
+    return;
+  }
+
+  const b = e.target.closest('[data-act]'); if(!b) return;
+  const a = b.dataset.act;
+  if(a==='edit-tx' && e.target.closest('[data-no-row-edit]')) return;
+  if(a==='tx'){ closeFab(); txDialog(b.dataset.kind); }
+  else if(a==='edit-tx'){
+    const kind = b.dataset.kind;
+    const id = b.dataset.id;
+    const item = kind==='income'
+      ? state.incomes.find(x => x.id === id)
+      : state.expenses.find(x => x.id === id);
+    if(item) txDialog(kind, item);
+  }
+  else if(a==='budget') budgetDialog();
+  else if(a==='ef') efDialog();
+  else if(a==='initial') initialBalanceDialog();
+  else if(a==='export') exportData();
+  else if(a==='export-enc') exportDataEncrypted();
+  else if(a==='pin-enable' || a==='pin-change') pinSetupDialog();
+  else if(a==='pin-disable') pinDisableDialog();
+  else if(a==='lock-now'){
+    if(!state.settings.pinEnabled){ showToast('ابتدا پین را فعال کنید.'); return; }
+    setSessionUnlocked(false);
+    renderLockScreen();
+  }
+  else if(a==='reset-all'){
+    if(!confirm('همه داده‌ها برای همیشه پاک شوند؟ این کار برگشت‌ناپذیر است.')) return;
+    state = DEFAULT();
+    mem = null;
+    try{ localStorage.removeItem(KEY); }catch(err){}
+    applyTheme();
+    showToast('همه داده‌ها پاک شدند.');
+    render();
+  }
+  else if(a==='cycle-theme'){ cycleTheme(); }
+  else if(a==='set-theme'){
+    state.settings.theme = b.dataset.theme || 'system';
+    save();
+    applyTheme();
+    showToast(THEME_LABEL[state.settings.theme] || 'تم به‌روز شد');
+    render();
+  }
+  else if(a==='save-currency'){
+    const inp = $('#currencyInput');
+    const v = (inp && inp.value || '').trim() || 'تومان';
+    state.settings.currency = v;
+    save();
+    showToast('واحد پول ذخیره شد.');
+    render();
+  }
+  else if(a==='pattern'){
+    const y = window.scrollY;
+    patternOpen = !patternOpen;
+    if(patternOpen && !state.achievements.patternFinder){ state.achievements.patternFinder = true; save(); }
+    render();
+    window.scrollTo(0, y);
+  }
+  else if(a==='advisor') advisorDialog();
+  else if(a==='advisor-copy') copyAdvisor();
+  else if(a==='advisor-txt') downloadAdvisorTxt();
+  else if(a==='advisor-pdf') downloadAdvisorPdf();
+  else if(a==='advisor-period'){
+    advisorPeriod = b.dataset.period || 'current';
+    const ta = $('#advisorText');
+    if(ta) ta.value = buildAdvisorPrompt();
+    const st = $('#advisorStatus');
+    if(st) st.textContent = 'بازه به «' + advisorPeriodLabel() + '» به‌روز شد.';
+    // refresh period button styles
+    document.querySelectorAll('[data-act="advisor-period"]').forEach(btn=>{
+      const on = btn.dataset.period === advisorPeriod;
+      btn.className = (on ? 'btn' : 'btn-ghost') + ' text-sm';
+    });
+  }
+  else if(a==='advisor-help'){
+    const h = $('#advisorHelp');
+    if(h){ const open = h.classList.toggle('hidden') === false; b.setAttribute('aria-expanded', String(open)); }
+  }
+  else if(a==='advisor-close') dlg.close();
+  else if(a==='goal') goalDialog();
+  else if(a==='goal-edit'){
+    const g = (state.savingsGoals||[]).find(x => x.id === b.dataset.id);
+    if(g) goalDialog(g);
+  }
+  else if(a==='goal-add'){
+    const g = (state.savingsGoals||[]).find(x => x.id === b.dataset.id);
+    if(g) goalAddAmountDialog(g);
+  }
+  else if(a==='del-goal'){
+    if(!confirm('این هدف پس‌انداز حذف شود؟')) return;
+    state.savingsGoals = (state.savingsGoals||[]).filter(g => g.id !== b.dataset.id);
+    save();
+    showToast('هدف حذف شد.');
+    render();
+  }
+  else if(a==='budget-copy-prev'){
+    const inp = form.querySelector('[name="total"]');
+    if(inp){ inp.value = formatMoneyTyping(String(b.dataset.amount||'')); }
+  }
+  else if(a==='debt') debtDialog();
+  else if(a==='debt-edit'){
+    const d = (state.debts||[]).find(x => x.id === b.dataset.id);
+    if(d) debtDialog(d);
+  }
+  else if(a==='del-debt'){
+    if(!confirm('این بدهی حذف شود؟')) return;
+    state.debts = (state.debts||[]).filter(x => x.id !== b.dataset.id);
+    save(); showToast('بدهی حذف شد.'); render();
+  }
+  else if(a==='cat-add') catAddDialog();
+  else if(a==='cat-toggle'){
+    const c = state.categories.find(x => x.id === b.dataset.id);
+    if(c){ c.isActive = !c.isActive; save(); render(); }
+  }
+  else if(a==='cat-del'){
+    const c = state.categories.find(x => x.id === b.dataset.id);
+    if(!c || !c.isCustom) return;
+    if(!confirm('دستهٔ سفارشی حذف شود؟')) return;
+    state.categories = state.categories.filter(x => x.id !== c.id);
+    save(); showToast('دسته حذف شد.'); render();
+  }
+  else if(a==='recur-add'){
+    const src = state.incomes.find(x => x.id === b.dataset.id);
+    if(!src) return;
+    const mk = jMonthKey(todayISO());
+    if(state.incomes.some(x => x.isRecurring && x.source===src.source && jMonthKey(x.date)===mk)){
+      showToast('برای این منبع در این ماه قبلاً ثبت شده.');
+      return;
+    }
+    state.incomes.push({id:uid(), amount:src.amount, date:todayISO(), source:src.source, description:'تکرار از ماه قبل', isRecurring:true});
+    save(); showToast('درآمد تکرارشونده برای این ماه ثبت شد.'); render();
+  }
+  else if(a==='tx-filter'){
+    txFilter = b.dataset.filter || 'all';
+    render();
+  }
+  else if(a==='tx-month'){
+    txMonth = b.dataset.month || 'current';
+    render();
+  }
+  else if(a==='complete-lesson'){
+    const n = +b.dataset.n;
+    let done = state.educationProgress.completedSteps || [];
+    if(done.includes(n)){
+      /* برداشتن تکمیل این قدم، قدم‌های بعدی را هم قفل می‌کند */
+      done = done.filter(x => x < n);
+      showToast('علامت تکمیل برداشته شد؛ قدم‌های بعدی دوباره قفل شدند.');
+    } else {
+      if(n > 1 && !done.includes(n - 1)){
+        showToast('ابتدا قدم قبلی را تکمیل کنید.');
+        return;
+      }
+      done = [...done, n].sort((x,y)=>x-y);
+      showToast('قدم ' + n.toLocaleString('fa-IR') + ' تکمیل شد.' + (n < 12 ? ' قدم بعدی باز شد.' : ''));
+    }
+    state.educationProgress.completedSteps = done;
+    save();
+    render();
+    if(!location.hash.startsWith('#education') && !location.hash.startsWith('#lesson-')) location.hash = '#education';
+  }
+
+});
+
+document.addEventListener('keydown', e => {
+  if(e.key==='Enter' || e.key===' '){
+    const faqQ = e.target.closest('.faq-q');
+    if(faqQ){ e.preventDefault(); faqQ.click(); }
+  }
+  if(e.key==='Escape') closeFab();
+});
+
+
+function renderLockScreen(){
+  closeFab();
+  const app = $('#app');
+  if(app) app.innerHTML = '';
+  let box = document.getElementById('lockScreen');
+  if(!box){
+    box = document.createElement('div');
+    box.id = 'lockScreen';
+    box.innerHTML = `<div class="lock-inner card">
+      <p class="text-2xl mb-2">🔒</p>
+      <h1 class="font-bold text-xl mb-1">قفل همراه مالی</h1>
+      <p class="muted text-sm mb-4 leading-7">برای ادامه، پین خود را وارد کنید. این قفل فقط روی همین مرورگر است و جایگزین رمزگذاری کامل دیسک نیست.</p>
+      <label class="block text-sm text-right mb-1">پین</label>
+      <input id="lockPinInput" class="inp text-center" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" placeholder="••••">
+      <p id="lockErr" class="text-sm mt-2" style="color:var(--bad);min-height:1.25rem"></p>
+      <button type="button" class="btn w-full mt-2" id="lockSubmit">ورود</button>
+    </div>`;
+    document.body.appendChild(box);
+  }
+  box.style.display = 'flex';
+  document.body.classList.add('is-locked');
+  const input = document.getElementById('lockPinInput');
+  const err = document.getElementById('lockErr');
+  const submit = document.getElementById('lockSubmit');
+  if(err) err.textContent = '';
+  if(input){ input.value = ''; setTimeout(() => input.focus(), 100); }
+  const tryUnlock = async () => {
+    const pin = (input && input.value) || '';
+    if(!pin){ if(err) err.textContent = 'پین را وارد کنید.'; return; }
+    const hash = await sha256Hex('hamrah-mali-pin:' + pin);
+    if(hash !== state.settings.pinHash){
+      if(err) err.textContent = 'پین نادرست است.';
+      if(input){ input.value = ''; input.focus(); }
+      return;
+    }
+    setSessionUnlocked(true);
+    hideLockScreen();
+    render();
+  };
+  if(submit) submit.onclick = () => { tryUnlock(); };
+  if(input) input.onkeydown = e => { if(e.key === 'Enter'){ e.preventDefault(); tryUnlock(); } };
+}
+function hideLockScreen(){
+  const box = document.getElementById('lockScreen');
+  if(box) box.style.display = 'none';
+  document.body.classList.remove('is-locked');
+}
+async function pinSetupDialog(){
+  openDialog(
+    `<h3 class="font-bold text-lg">تنظیم پین قفل</h3>
+     <p class="muted text-sm leading-7">پین فقط جلوی دسترسی سریع در همین مرورگر را می‌گیرد. از DevTools یا پشتیبان بدون رمز هنوز می‌توان داده را خواند. برای حساسیت بالا از پشتیبان رمزدار و قفل دستگاه استفاده کنید.</p>`
+    + field('پین جدید (۴ تا ۱۲ رقم یا حرف)', `<input class="inp" name="pin" type="password" inputmode="numeric" autocomplete="new-password" required minlength="4" maxlength="12">`)
+    + field('تکرار پین', `<input class="inp" name="pin2" type="password" inputmode="numeric" autocomplete="new-password" required minlength="4" maxlength="12">`),
+    async fd => {
+      const pin = String(fd.get('pin')||'');
+      const pin2 = String(fd.get('pin2')||'');
+      if(pin.length < 4){ showToast('پین حداقل ۴ کاراکتر باشد.'); return false; }
+      if(pin !== pin2){ showToast('دو پین یکسان نیستند.'); return false; }
+      state.settings.pinHash = await sha256Hex('hamrah-mali-pin:' + pin);
+      state.settings.pinEnabled = true;
+      save();
+      setSessionUnlocked(true);
+      showToast('قفل پین فعال شد.');
+    }
+  );
+}
+async function pinDisableDialog(){
+  openDialog(
+    `<h3 class="font-bold text-lg">خاموش کردن قفل پین</h3>`
+    + field('پین فعلی', `<input class="inp" name="pin" type="password" inputmode="numeric" autocomplete="current-password" required>`),
+    async fd => {
+      const pin = String(fd.get('pin')||'');
+      const hash = await sha256Hex('hamrah-mali-pin:' + pin);
+      if(hash !== state.settings.pinHash){ showToast('پین نادرست است.'); return false; }
+      state.settings.pinEnabled = false;
+      state.settings.pinHash = '';
+      save();
+      setSessionUnlocked(true);
+      showToast('قفل پین خاموش شد.');
+    }
+  );
+}
+
+function render(){
+  closeFab();
+  if(needsLockScreen()){
+    renderLockScreen();
+    return;
+  }
+  hideLockScreen();
+  const hash = location.hash || '#home';
+  if(hash.startsWith('#lesson-')){
+    renderEducation();
+    updateBottomNav();
+    requestAnimationFrame(()=>{
+      const el = document.querySelector(hash);
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+    return;
+  }
+  if(hash==='#dashboard') renderDashboard();
+  else if(hash==='#transactions') renderTransactions();
+  else if(hash==='#reports') renderReports();
+  else if(hash==='#education') renderEducation();
+  else if(hash==='#help') renderHelp();
+  else if(hash==='#settings') renderSettings();
+  else renderHome();
+  updateBottomNav();
+  if(!hash.startsWith('#lesson-')) window.scrollTo(0, 0);
+}
+window.addEventListener('hashchange', render);
+window.addEventListener('resize', () => {
+  if(window.innerWidth >= 768) closeFab();
+});
+render();
+
+/* ---------- آفلاین / Service Worker ---------- */
+window.addEventListener('online', () => document.body.classList.remove('is-offline'));
+window.addEventListener('offline', () => document.body.classList.add('is-offline'));
+if(!navigator.onLine) document.body.classList.add('is-offline');
+
+if('serviceWorker' in navigator){
+  if(location.protocol.startsWith('http')){
+    navigator.serviceWorker.register('./hamrah-mali-sw.js')
+      .then(() => console.info('SW ثبت شد'))
+      .catch(err => console.warn('SW', err));
+  } else if(location.protocol === 'file:'){
+    console.info('Service Worker روی file:// پشتیبانی نمی‌شود؛ برای آفلاین کامل با یک سرور محلی باز کنید.');
+  }
+}
+
+</script>
+</body>
+</html>
